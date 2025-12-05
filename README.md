@@ -13,7 +13,7 @@ A dynamic and modern portfolio website built using **Angular 21**, designed to s
 
 ## 🚀 **Live Demo**
 <p align="center">
-  <a href="ADD_YOUR_DEPLOY_URL_HERE" target="_blank">
+  <a href="[ADD_YOUR_DEPLOY_URL_HERE](https://tharu-portfolio-123.vercel.app/)" target="_blank">
     <img src="https://img.shields.io/badge/Visit_Live_Site-00AEEF?style=for-the-badge&logo=google-chrome&logoColor=white"/>
   </a>
 </p>
