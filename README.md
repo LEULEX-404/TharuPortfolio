@@ -78,29 +78,29 @@ bash
 Copy code
 ng test
 📁 Project Structure (Simplified)
+<br>
 arduino
+<br>
 Copy code
-src/
- ├── app/
- │   ├── components/
- │   ├── pages/
- │   ├── services/
- │   └── app.config.ts
- ├── assets/
- └── index.html
-🌐 Deploy Options
-You can deploy this Angular portfolio easily on:
-
-Platform	Supported	Notes
-Vercel	✅	Easiest + Fast
-Netlify	✅	Drag-and-drop build
-GitHub Pages	✅	Free forever
-Firebase Hosting	✅	Fast CDN
+<br>
+src/<br>
+ ├── app/<br>
+ │   ├── components/<br>
+ │   ├── pages/<br>
+ │   ├── services/<br>
+ │   └── app.config.ts<br>
+ ├── assets/<br>
+ └── index.html<br>
+🌐 Deploy Options<br>
+You can deploy this Angular portfolio easily on:<br>
+<br>
+Platform	Supported	Notes<br>
+Vercel	✅	Easiest + Fast<br>
+Netlify	✅	Drag-and-drop build<br>
+GitHub Pages	✅	Free forever<br>
+Firebase Hosting	✅	Fast CDN<br>
 
 📬 Contact
 <p align="center"> <img src="https://img.shields.io/badge/Email-Contact_Me-ff4d4d?style=for-the-badge&logo=gmail&logoColor=white"/> </p>
-⭐ Support This Project
-If you like it, please give a ⭐ star on GitHub — it motivates more updates!
 
 🎉 Thanks for visiting!
-<p align="center"> <img src="https://img.shields.io/badge/Made_With_Love-FF69B4?style=for-the-badge"/> </p> ```
