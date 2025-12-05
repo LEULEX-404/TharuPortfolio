@@ -61,7 +61,7 @@ A dynamic and modern portfolio website built using **Angular 21**, designed to s
 # 🛠️ **Development Setup**
 
 ### Start Dev Server
-```bash
+
 ng serve
 Navigate to:
 http://localhost:4200/
