@@ -1,59 +1,102 @@
-# Tharu
+🌟 Tharu — Angular Portfolio Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.1.
+A modern, fast, and lightweight portfolio website built using Angular 21 and Angular CLI.
+Designed for performance, scalability, and a smooth developer experience.
 
-## Development server
+🚀 Live Demo
 
-To start a local development server, run:
+➡️ Add your deployed link here
+https://your-portfolio-domain.com
 
-```bash
+🎨 Features
+
+⚡ Angular 21 with standalone components
+
+🎨 Clean, modern UI design
+
+📱 Fully responsive layout
+
+🛠️ Easy-to-customize project structure
+
+🚀 Production-ready build optimizations
+
+🧪 Includes Unit Testing with Vitest
+
+🌐 Ready to deploy on Vercel, Netlify, Firebase, or GitHub Pages
+
+🖥️ Development Server
+
+Start the development server:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+Then open your browser at:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+http://localhost:4200/
 
-```bash
+
+The app automatically reloads on file changes.
+
+🧩 Code Scaffolding
+
+Generate new components easily:
+
 ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
+Or explore all schematics:
+
 ng generate --help
-```
 
-## Building
+🏗️ Build for Production
 
-To build the project run:
+Create an optimized build:
 
-```bash
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+The output will be available in:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+dist/
 
-```bash
+
+Perfect for deployment on any static host.
+
+🧪 Unit Tests with Vitest
+
+Run your unit tests:
+
 ng test
-```
 
-## Running end-to-end tests
+🧪 End-to-End Testing
 
-For end-to-end (e2e) testing, run:
+Angular 21 does not include an e2e framework by default.
+You may choose from:
 
-```bash
+Cypress
+
+Playwright
+
+WebdriverIO
+
+Run your e2e setup of choice:
+
 ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+📚 Useful Resources
 
-## Additional Resources
+⚙️ Angular CLI Documentation
+https://angular.dev/tools/cli
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+🔥 Angular Official Docs
+https://angular.dev/
+
+💫 Author
+
+Tharu
+Your tagline here — e.g., Frontend Developer | Angular Enthusiast
+
+⭐ Show Your Support
+
+If you like this project, consider giving it a star ⭐ on GitHub!
