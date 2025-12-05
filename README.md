@@ -67,21 +67,14 @@ http://localhost:4200/<br>
 <br>
 🏗️ Build for Production<br>
 bash<br>
-Copy code<br>
 ng build<br>
 Build files go into:<br>
 <br>
-Copy code<br>
 dist/<br>
 🧪 Run Unit Tests<br>
 bash<br>
-Copy code<br>
 ng test<br>
 📁 Project Structure (Simplified)<br>
-<br>
-arduino<br>
-<br>
-Copy code<br>
 <br>
 src/<br>
  ├── app/<br>
