@@ -60,7 +60,7 @@ A dynamic and modern portfolio website built using **Angular 21**, designed to s
 # 🛠️ **Development Setup**
 
 ### Start Dev Server
-<br>
+
 ng serve<br>
 Navigate to:<br>
 http://localhost:4200/<br>
@@ -74,6 +74,7 @@ dist/<br>
 🧪 Run Unit Tests<br>
 bash<br>
 ng test<br>
+<br>
 📁 Project Structure (Simplified)<br>
 <br>
 src/<br>
