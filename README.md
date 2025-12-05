@@ -21,7 +21,6 @@ A dynamic and modern portfolio website built using **Angular 21**, designed to s
 ---
 
 ## 🎨 **UI Preview**
-> Replace with your real screenshot later
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/LEULEX-404/TharuPortfolio/main/public/portfolio.png"
