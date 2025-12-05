@@ -60,28 +60,28 @@ A dynamic and modern portfolio website built using **Angular 21**, designed to s
 # 🛠️ **Development Setup**
 
 ### Start Dev Server
-
-ng serve
-Navigate to:
-http://localhost:4200/
-
-🏗️ Build for Production
-bash
-Copy code
-ng build
-Build files go into:
-
-Copy code
-dist/
-🧪 Run Unit Tests
-bash
-Copy code
-ng test
-📁 Project Structure (Simplified)
 <br>
-arduino
+ng serve<br>
+Navigate to:<br>
+http://localhost:4200/<br>
 <br>
-Copy code
+🏗️ Build for Production<br>
+bash<br>
+Copy code<br>
+ng build<br>
+Build files go into:<br>
+<br>
+Copy code<br>
+dist/<br>
+🧪 Run Unit Tests<br>
+bash<br>
+Copy code<br>
+ng test<br>
+📁 Project Structure (Simplified)<br>
+<br>
+arduino<br>
+<br>
+Copy code<br>
 <br>
 src/<br>
  ├── app/<br>
