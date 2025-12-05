@@ -24,7 +24,7 @@ A dynamic and modern portfolio website built using **Angular 21**, designed to s
 > Replace with your real screenshot later
 
 <p align="center">
-  <img src="https://via.placeholder.com/1100x550/0d1117/ffffff?text=Your+Angular+Portfolio+Screenshot+Preview" 
+  <img src="https://raw.githubusercontent.com/LEULEX-404/TharuPortfolio/main/public/portfolio.png"
        style="border-radius: 14px; box-shadow: 0 0 25px #00AEEF;">
 </p>
 
