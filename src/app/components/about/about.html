@@ -1,0 +1,185 @@
+<section id="about" class="about-section">
+
+    <!-- Hero / Intro -->
+    <div class="about-hero">
+      <div class="hero-content">
+        <div class="glitch-wrapper">
+          <h1 class="glitch-text" data-text="Hello, I'm John Doe">Hello, I'm THARUKA</h1>
+        </div>
+        <div class="terminal-text">
+          <span class="terminal-prompt">$</span>
+          <span class="typing-text">Full-Stack Developer | Creative Problem Solver | Tech Enthusiast</span>
+        </div>
+        <div class="hero-actions">
+          <a href="contact" class="btn-neon primary">
+            <span>Get in Touch</span>
+            <span class="btn-glow"></span>
+          </a>
+          <a href="projects" class="btn-neon secondary">
+            <span>View Projects</span>
+            <span class="btn-glow"></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="profile-container">
+          <div class="scan-line"></div>
+          <div class="profile-frame">
+            <img src="profile.jpg" alt="John Doe Profile" class="profile-img">
+          </div>
+          <div class="corner-accents">
+            <span class="corner top-left"></span>
+            <span class="corner top-right"></span>
+            <span class="corner bottom-left"></span>
+            <span class="corner bottom-right"></span>
+          </div>
+        </div>
+        <div class="floating-elements">
+          <div class="float-item" style="--delay: 0s">{{ '{ }' }}</div>
+          <div class="float-item" style="--delay: 1s">&lt; /&gt;</div>
+          <div class="float-item" style="--delay: 2s">[ ]</div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- About Me -->
+    <div class="about-content">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="bracket">[</span> About Me <span class="bracket">]</span>
+        </h2>
+        <div class="header-underline"></div>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="lead-text">
+            I'm a passionate developer with experience in building scalable web applications and interactive UI. I love exploring new technologies and turning ideas into reality.
+          </p>
+          
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <div class="icon-wrapper">💡</div>
+              <h4>Creative Problem Solver</h4>
+              <p>Innovative solutions to complex challenges</p>
+            </div>
+            <div class="highlight-card">
+              <div class="icon-wrapper">🌐</div>
+              <h4>Web & Mobile Apps</h4>
+              <p>Cross-platform development expertise</p>
+            </div>
+            <div class="highlight-card">
+              <div class="icon-wrapper">🚀</div>
+              <h4>Performance & UX</h4>
+              <p>Optimized user experiences</p>
+            </div>
+            <div class="highlight-card">
+              <div class="icon-wrapper">🤝</div>
+              <h4>Team Player</h4>
+              <p>Collaborative and communicative</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Skills -->
+    <div class="skills-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="bracket">[</span> Technical Skills <span class="bracket">]</span>
+        </h2>
+        <div class="header-underline"></div>
+      </div>
+  
+      <div class="skills-grid">
+        <div class="skill-card" *ngFor="let skill of skills; let i = index">
+          <div class="skill-header">
+            <h3>{{ skill.name }}</h3>
+            <span class="skill-percent">{{ skill.level }}%</span>
+          </div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" #skillBar>
+                <div class="skill-bar-glow"></div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-tags">
+            <span class="mini-tag" *ngFor="let tag of skill.tags">{{ tag }}</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  
+    <!-- Experience -->
+    <div class="experience-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="bracket">[</span> Experience <span class="bracket">]</span>
+        </h2>
+        <div class="header-underline"></div>
+      </div>
+  
+      <div class="timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-item" *ngFor="let exp of experiences">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-pulse"></div>
+          </div>
+          <div class="timeline-content">
+            <span class="timeline-date">{{ exp.period }}</span>
+            <h3 class="timeline-title">{{ exp.title }}</h3>
+            <p class="timeline-company">{{ exp.company }}</p>
+            <p class="timeline-desc">{{ exp.description }}</p>
+            <div class="timeline-tech">
+              <span class="tech-badge" *ngFor="let tech of exp.technologies">{{ tech }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Education -->
+    <div class="education-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="bracket">[</span> Education <span class="bracket">]</span>
+        </h2>
+        <div class="header-underline"></div>
+      </div>
+  
+      <div class="education-grid">
+        <div class="education-card" *ngFor="let edu of education">
+          <div class="edu-icon">🎓</div>
+          <h3 class="edu-degree">{{ edu.degree }}</h3>
+          <p class="edu-institution">{{ edu.institution }}</p>
+          <span class="edu-period">{{ edu.period }}</span>
+          <p class="edu-details">{{ edu.details }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Achievements -->
+    <div class="achievements-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="bracket">[</span> Achievements & Fun Facts <span class="bracket">]</span>
+        </h2>
+        <div class="header-underline"></div>
+      </div>
+  
+      <div class="achievements-grid">
+        <div class="achievement-card" *ngFor="let achievement of achievements">
+          <div class="achievement-icon">{{ achievement.icon }}</div>
+          <h3>{{ achievement.title }}</h3>
+          <p>{{ achievement.description }}</p>
+          <div class="achievement-glow"></div>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  

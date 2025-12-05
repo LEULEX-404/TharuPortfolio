@@ -1,0 +1,113 @@
+<div class="home-container">
+
+    <!-- Hero Section with Profile Card -->
+    <div class="hero-section">
+      <div class="electric-particles"></div>
+      
+      <div class="profile-card">
+        
+        <!-- Cover Image with Glow -->
+        <div class="cover-image">
+          <img src="cover.png" alt="Cover Image">
+          <div class="cover-overlay"></div>
+          <div class="electric-border"></div>
+        </div>
+    
+        <!-- Profile Image with Neon Ring -->
+        <div class="profile-image">
+          <div class="neon-ring"></div>
+          <img src="profile.jpg" alt="Profile Image">
+          <div class="pulse-ring"></div>
+        </div>
+    
+        <!-- Profile Info -->
+        <div class="profile-info">
+          <h1 class="neon-title">Tharuka Sanjeewa</h1>
+          <div class="title-glow"></div>
+          <p class="roles">
+            <span class="role">Back-End Developer</span>
+            <span class="separator">|</span>
+            <span class="role">Angular Developer</span>
+            <span class="separator">|</span>
+            <span class="role">Web Designer</span>
+          </p>
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text">Available for work</span>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+  
+    <!-- Home Content Section -->
+    <div class="home-content">
+  
+      <div class="welcome-section">
+        <h2 class="section-title">
+          <span class="title-bracket">&lt;</span>
+          Welcome to My Portfolio
+          <span class="title-bracket">/&gt;</span>
+        </h2>
+        <p class="intro-text">
+          Hi, I'm a web developer specialized in Angular.  
+          I build modern and responsive web applications with cutting-edge technology.
+        </p>
+      </div>
+  
+      <!-- Home Cards Grid -->
+      <div class="home-cards">
+  
+        <div class="card" (mouseenter)="onCardHover($event)" (mouseleave)="onCardLeave($event)">
+          <div class="card-glow"></div>
+          <div class="card-icon">👤</div>
+          <h3>About Me</h3>
+          <p>Learn more about my background and journey in web development.</p>
+          <a routerLink="/about" class="card-link">
+            <span>Read More</span>
+            <span class="arrow">→</span>
+          </a>
+          <div class="card-circuit"></div>
+        </div>
+  
+        <div class="card" (mouseenter)="onCardHover($event)" (mouseleave)="onCardLeave($event)">
+          <div class="card-glow"></div>
+          <div class="card-icon">⚡</div>
+          <h3>My Skills</h3>
+          <p>Technologies and tools I work with to build amazing applications.</p>
+          <a routerLink="/skills" class="card-link">
+            <span>View Skills</span>
+            <span class="arrow">→</span>
+          </a>
+          <div class="card-circuit"></div>
+        </div>
+  
+        <div class="card" (mouseenter)="onCardHover($event)" (mouseleave)="onCardLeave($event)">
+          <div class="card-glow"></div>
+          <div class="card-icon">🚀</div>
+          <h3>Projects</h3>
+          <p>Some of my recent web development projects and achievements.</p>
+          <a routerLink="/projects" class="card-link">
+            <span>View Projects</span>
+            <span class="arrow">→</span>
+          </a>
+          <div class="card-circuit"></div>
+        </div>
+  
+        <div class="card" (mouseenter)="onCardHover($event)" (mouseleave)="onCardLeave($event)">
+          <div class="card-glow"></div>
+          <div class="card-icon">📧</div>
+          <h3>Contact Me</h3>
+          <p>Let's work together or have a chat about your next project.</p>
+          <a routerLink="/contact" class="card-link">
+            <span>Contact</span>
+            <span class="arrow">→</span>
+          </a>
+          <div class="card-circuit"></div>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>

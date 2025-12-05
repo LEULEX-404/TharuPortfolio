@@ -1,0 +1,38 @@
+<section id="contact" class="contact-section">
+
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="bracket">[</span> Contact Me <span class="bracket">]</span>
+      </h2>
+      <div class="header-underline"></div>
+    </div>
+  
+    <!-- Contact Cards -->
+    <div class="contacts-grid">
+      <div class="contact-card" *ngFor="let contact of contacts" #animateCard>
+        <div class="contact-icon">{{ contact.icon }}</div>
+        <h3>{{ contact.title }}</h3>
+        <p>{{ contact.description }}</p>
+        <a [href]="contact.link" target="_blank" class="btn-neon secondary">
+          <span>{{ contact.action }}</span>
+          <span class="btn-glow"></span>
+        </a>
+      </div>
+    </div>
+  
+    <!-- Contact Form -->
+    <div class="contact-form-wrapper" #animateCard>
+      <h3>Send me a message</h3>
+      <form (submit)="sendMessage($event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn-neon primary">
+          <span>Send Message</span>
+          <span class="btn-glow"></span>
+        </button>
+      </form>
+    </div>
+  
+  </section>
+  

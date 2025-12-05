@@ -1,0 +1,297 @@
+<!-- Projects Section -->
+<section class="projects-section">
+  
+  <!-- Header -->
+  <div class="projects-header">
+    <h2 class="neon-heading">
+      <span class="bracket">&lt;</span>
+      My Projects
+      <span class="bracket">/&gt;</span>
+    </h2>
+    <p class="subtitle">Showcasing my recent work and achievements</p>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- Projects Grid -->
+  <div class="projects-grid">
+    
+    <!-- Project Card 1 -->
+    <div class="project-card" (click)="openModal('modal1')">
+      <div class="card-glow"></div>
+      <div class="project-number">01</div>
+      
+      <div class="project-icon">📋</div>
+      
+      <h3>Project One</h3>
+      <p class="project-summary">A web application for managing tasks efficiently.</p>
+      
+      <div class="tech-stack">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JS</span>
+        <span class="tech-tag">React</span>
+      </div>
+      
+      <button class="view-more">
+        <span>View Details</span>
+        <span class="arrow">→</span>
+      </button>
+      
+      <div class="card-circuit"></div>
+    </div>
+
+    <!-- Project Card 2 -->
+    <div class="project-card" (click)="openModal('modal2')">
+      <div class="card-glow"></div>
+      <div class="project-number">02</div>
+      
+      <div class="project-icon">🛒</div>
+      
+      <h3>Project Two</h3>
+      <p class="project-summary">E-commerce platform for small businesses.</p>
+      
+      <div class="tech-stack">
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Express</span>
+        <span class="tech-tag">MongoDB</span>
+      </div>
+      
+      <button class="view-more">
+        <span>View Details</span>
+        <span class="arrow">→</span>
+      </button>
+      
+      <div class="card-circuit"></div>
+    </div>
+
+    <!-- Project Card 3 -->
+    <div class="project-card" (click)="openModal('modal3')">
+      <div class="card-glow"></div>
+      <div class="project-number">03</div>
+      
+      <div class="project-icon">💬</div>
+      
+      <h3>Project Three</h3>
+      <p class="project-summary">Real-time chat application with notifications.</p>
+      
+      <div class="tech-stack">
+        <span class="tech-tag">Firebase</span>
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Tailwind</span>
+      </div>
+      
+      <button class="view-more">
+        <span>View Details</span>
+        <span class="arrow">→</span>
+      </button>
+      
+      <div class="card-circuit"></div>
+    </div>
+
+    <!-- Project Card 4 -->
+    <div class="project-card" (click)="openModal('modal4')">
+      <div class="card-glow"></div>
+      <div class="project-number">04</div>
+      
+      <div class="project-icon">✨</div>
+      
+      <h3>Project Four</h3>
+      <p class="project-summary">Portfolio website with dynamic animations.</p>
+      
+      <div class="tech-stack">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JS</span>
+        <span class="tech-tag">GSAP</span>
+      </div>
+      
+      <button class="view-more">
+        <span>View Details</span>
+        <span class="arrow">→</span>
+      </button>
+      
+      <div class="card-circuit"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Project Modals -->
+
+<!-- Modal 1 -->
+<div id="modal1" class="modal" [class.active]="activeModal === 'modal1'" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Project One</h3>
+      <button class="close" (click)="closeModal($event)">&times;</button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="modal-image">
+        <img src="assets/project1-image.jpg" alt="Project One Screenshot">
+        <div class="image-overlay"></div>
+      </div>
+      
+      <div class="modal-details">
+        <div class="detail-section">
+          <h4>Overview</h4>
+          <p>A web application for managing tasks efficiently. Users can create, update, and delete tasks in real-time with an intuitive drag-and-drop interface.</p>
+        </div>
+        
+        <div class="detail-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">React</span>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <a href="#" class="action-btn primary">
+            <span>Live Demo</span>
+            <span>🚀</span>
+          </a>
+          <a href="#" class="action-btn secondary">
+            <span>View Code</span>
+            <span>📂</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div id="modal2" class="modal" [class.active]="activeModal === 'modal2'" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Project Two</h3>
+      <button class="close" (click)="closeModal($event)">&times;</button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="modal-image">
+        <img src="assets/project2-image.jpg" alt="Project Two Screenshot">
+        <div class="image-overlay"></div>
+      </div>
+      
+      <div class="modal-details">
+        <div class="detail-section">
+          <h4>Overview</h4>
+          <p>E-commerce platform for small businesses. Features include product catalog, shopping cart, secure checkout, and order management system.</p>
+        </div>
+        
+        <div class="detail-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-stack">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">MongoDB</span>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <a href="#" class="action-btn primary">
+            <span>Live Demo</span>
+            <span>🚀</span>
+          </a>
+          <a href="#" class="action-btn secondary">
+            <span>View Code</span>
+            <span>📂</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="modal3" class="modal" [class.active]="activeModal === 'modal3'" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Project Three</h3>
+      <button class="close" (click)="closeModal($event)">&times;</button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="modal-image">
+        <img src="assets/project3-image.jpg" alt="Project Three Screenshot">
+        <div class="image-overlay"></div>
+      </div>
+      
+      <div class="modal-details">
+        <div class="detail-section">
+          <h4>Overview</h4>
+          <p>Real-time chat application with notifications. Built with Firebase for instant messaging, file sharing, and cloud storage with push notifications.</p>
+        </div>
+        
+        <div class="detail-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-stack">
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Tailwind CSS</span>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <a href="#" class="action-btn primary">
+            <span>Live Demo</span>
+            <span>🚀</span>
+          </a>
+          <a href="#" class="action-btn secondary">
+            <span>View Code</span>
+            <span>📂</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="modal4" class="modal" [class.active]="activeModal === 'modal4'" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Project Four</h3>
+      <button class="close" (click)="closeModal($event)">&times;</button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="modal-image">
+        <img src="assets/project4-image.jpg" alt="Project Four Screenshot">
+        <div class="image-overlay"></div>
+      </div>
+      
+      <div class="modal-details">
+        <div class="detail-section">
+          <h4>Overview</h4>
+          <p>Portfolio website with dynamic animations using GSAP. Features smooth transitions, scroll-triggered animations, and fully responsive design.</p>
+        </div>
+        
+        <div class="detail-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">GSAP</span>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <a href="#" class="action-btn primary">
+            <span>Live Demo</span>
+            <span>🚀</span>
+          </a>
+          <a href="#" class="action-btn secondary">
+            <span>View Code</span>
+            <span>📂</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

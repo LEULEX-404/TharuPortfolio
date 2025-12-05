@@ -1,0 +1,37 @@
+<nav class="neon-nav">
+  <div class="nav-container">
+    <div class="logo">
+      <span class="logo-text">{{ title() }}</span>
+      <div class="logo-glow"></div>
+    </div>
+    
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <span class="link-text">Home</span>
+        <span class="link-glow"></span>
+      </a>
+      <a routerLink="/skills" routerLinkActive="active">
+        <span class="link-text">Skills</span>
+        <span class="link-glow"></span>
+      </a>
+      <a routerLink="/projects" routerLinkActive="active">
+        <span class="link-text">Projects</span>
+        <span class="link-glow"></span>
+      </a>
+      <a routerLink="/about" routerLinkActive="active">
+        <span class="link-text">About</span>
+        <span class="link-glow"></span>
+      </a>
+      <a routerLink="/contact" routerLinkActive="active">
+        <span class="link-text">Contact</span>
+        <span class="link-glow"></span>
+      </a>
+    </div>
+  </div>
+  
+  <div class="electric-line"></div>
+</nav>
+
+<div class="page-content">
+  <router-outlet></router-outlet>
+</div>
