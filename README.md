@@ -1,102 +1,107 @@
-🌟 Tharu — Angular Portfolio Project
+<!-- Dynamic Header -->
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Poppins&size=28&duration=2500&pause=800&color=00AEEF&center=true&vCenter=true&width=700&lines=Welcome+to+Tharu's+Angular+Portfolio;Built+With+Angular+21;Modern+UI+%7C+Responsive+Design+%7C+Fast+Performance" />
+</p>
 
-A modern, fast, and lightweight portfolio website built using Angular 21 and Angular CLI.
-Designed for performance, scalability, and a smooth developer experience.
+---
 
-🚀 Live Demo
+# 🌟 **Tharu — Angular Portfolio Project**
 
-➡️ Add your deployed link here
-https://your-portfolio-domain.com
+A dynamic and modern portfolio website built using **Angular 21**, designed to showcase your skills, projects, and creativity with a clean UI and smooth interactions.
 
-🎨 Features
+---
 
-⚡ Angular 21 with standalone components
+## 🚀 **Live Demo**
+<p align="center">
+  <a href="ADD_YOUR_DEPLOY_URL_HERE" target="_blank">
+    <img src="https://img.shields.io/badge/Visit_Live_Site-00AEEF?style=for-the-badge&logo=google-chrome&logoColor=white"/>
+  </a>
+</p>
 
-🎨 Clean, modern UI design
+---
 
-📱 Fully responsive layout
+## 🎨 **UI Preview**
+> Replace with your real screenshot later
 
-🛠️ Easy-to-customize project structure
+<p align="center">
+  <img src="https://via.placeholder.com/1100x550/0d1117/ffffff?text=Your+Angular+Portfolio+Screenshot+Preview" 
+       style="border-radius: 14px; box-shadow: 0 0 25px #00AEEF;">
+</p>
 
-🚀 Production-ready build optimizations
+---
 
-🧪 Includes Unit Testing with Vitest
+# ⚡ **Tech Stack**
 
-🌐 Ready to deploy on Vercel, Netlify, Firebase, or GitHub Pages
+<p align="center">
+  <img src="https://img.shields.io/badge/Angular-21-red?style=for-the-badge&logo=angular&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/SCSS-C6538C?style=for-the-badge&logo=sass&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vitest-F9DE4B?style=for-the-badge&logo=vitest&logoColor=black"/>
+</p>
 
-🖥️ Development Server
+---
 
-Start the development server:
+# ✨ **Key Features**
 
+<div align="center">
+
+| Feature | Description |
+|--------|-------------|
+| 🎨 **Modern UI** | Clean design + smooth animations |
+| 📱 **Responsive Layout** | Works on all device sizes |
+| ⚡ **Fast Performance** | Optimized Angular production build |
+| 🧩 **Modular Components** | Organized and scalable code |
+| 🧪 **Unit Testing** | Powered by Vitest |
+| 🌐 **Easy Deployment** | Works with Vercel, Netlify, GitHub Pages |
+
+</div>
+
+---
+
+# 🛠️ **Development Setup**
+
+### Start Dev Server
+```bash
 ng serve
-
-
-Then open your browser at:
-
+Navigate to:
 http://localhost:4200/
 
-
-The app automatically reloads on file changes.
-
-🧩 Code Scaffolding
-
-Generate new components easily:
-
-ng generate component component-name
-
-
-Or explore all schematics:
-
-ng generate --help
-
 🏗️ Build for Production
-
-Create an optimized build:
-
+bash
+Copy code
 ng build
+Build files go into:
 
-
-The output will be available in:
-
+Copy code
 dist/
-
-
-Perfect for deployment on any static host.
-
-🧪 Unit Tests with Vitest
-
-Run your unit tests:
-
+🧪 Run Unit Tests
+bash
+Copy code
 ng test
+📁 Project Structure (Simplified)
+arduino
+Copy code
+src/
+ ├── app/
+ │   ├── components/
+ │   ├── pages/
+ │   ├── services/
+ │   └── app.config.ts
+ ├── assets/
+ └── index.html
+🌐 Deploy Options
+You can deploy this Angular portfolio easily on:
 
-🧪 End-to-End Testing
+Platform	Supported	Notes
+Vercel	✅	Easiest + Fast
+Netlify	✅	Drag-and-drop build
+GitHub Pages	✅	Free forever
+Firebase Hosting	✅	Fast CDN
 
-Angular 21 does not include an e2e framework by default.
-You may choose from:
+📬 Contact
+<p align="center"> <img src="https://img.shields.io/badge/Email-Contact_Me-ff4d4d?style=for-the-badge&logo=gmail&logoColor=white"/> </p>
+⭐ Support This Project
+If you like it, please give a ⭐ star on GitHub — it motivates more updates!
 
-Cypress
-
-Playwright
-
-WebdriverIO
-
-Run your e2e setup of choice:
-
-ng e2e
-
-📚 Useful Resources
-
-⚙️ Angular CLI Documentation
-https://angular.dev/tools/cli
-
-🔥 Angular Official Docs
-https://angular.dev/
-
-💫 Author
-
-Tharu
-Your tagline here — e.g., Frontend Developer | Angular Enthusiast
-
-⭐ Show Your Support
-
-If you like this project, consider giving it a star ⭐ on GitHub!
+🎉 Thanks for visiting!
+<p align="center"> <img src="https://img.shields.io/badge/Made_With_Love-FF69B4?style=for-the-badge"/> </p> ```
