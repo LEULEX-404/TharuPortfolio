@@ -5,109 +5,42 @@
   <div class="projects-header">
     <h2 class="neon-heading">
       <span class="bracket">&lt;</span>
-      My Projects
+      Featured Projects
       <span class="bracket">/&gt;</span>
     </h2>
-    <p class="subtitle">Showcasing my recent work and achievements</p>
+    <p class="subtitle">Building innovative solutions with cutting-edge technologies</p>
     <div class="header-line"></div>
   </div>
 
   <!-- Projects Grid -->
   <div class="projects-grid">
     
-    <!-- Project Card 1 -->
-    <div class="project-card" (click)="openModal('modal1')">
+    <!-- Project Card -->
+    <div 
+      *ngFor="let project of projects" 
+      class="project-card" 
+      (click)="openModal(project.id)"
+      [attr.data-number]="project.number">
+      
       <div class="card-glow"></div>
-      <div class="project-number">01</div>
+      <div class="project-number">{{ project.number }}</div>
       
-      <div class="project-icon">📋</div>
+      <div class="project-icon">
+        <fa-icon [icon]="project.icon" size="1x"class="gradient-icon"></fa-icon>
+      </div>
       
-      <h3>Project One</h3>
-      <p class="project-summary">A web application for managing tasks efficiently.</p>
+      <h3>{{ project.title }}</h3>
+      <p class="project-summary">{{ project.summary }}</p>
       
       <div class="tech-stack">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JS</span>
-        <span class="tech-tag">React</span>
+        <span class="tech-tag" *ngFor="let tech of project.techStack">
+          {{ tech }}
+        </span>
       </div>
       
       <button class="view-more">
         <span>View Details</span>
-        <span class="arrow">→</span>
-      </button>
-      
-      <div class="card-circuit"></div>
-    </div>
-
-    <!-- Project Card 2 -->
-    <div class="project-card" (click)="openModal('modal2')">
-      <div class="card-glow"></div>
-      <div class="project-number">02</div>
-      
-      <div class="project-icon">🛒</div>
-      
-      <h3>Project Two</h3>
-      <p class="project-summary">E-commerce platform for small businesses.</p>
-      
-      <div class="tech-stack">
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Express</span>
-        <span class="tech-tag">MongoDB</span>
-      </div>
-      
-      <button class="view-more">
-        <span>View Details</span>
-        <span class="arrow">→</span>
-      </button>
-      
-      <div class="card-circuit"></div>
-    </div>
-
-    <!-- Project Card 3 -->
-    <div class="project-card" (click)="openModal('modal3')">
-      <div class="card-glow"></div>
-      <div class="project-number">03</div>
-      
-      <div class="project-icon">💬</div>
-      
-      <h3>Project Three</h3>
-      <p class="project-summary">Real-time chat application with notifications.</p>
-      
-      <div class="tech-stack">
-        <span class="tech-tag">Firebase</span>
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">Tailwind</span>
-      </div>
-      
-      <button class="view-more">
-        <span>View Details</span>
-        <span class="arrow">→</span>
-      </button>
-      
-      <div class="card-circuit"></div>
-    </div>
-
-    <!-- Project Card 4 -->
-    <div class="project-card" (click)="openModal('modal4')">
-      <div class="card-glow"></div>
-      <div class="project-number">04</div>
-      
-      <div class="project-icon">✨</div>
-      
-      <h3>Project Four</h3>
-      <p class="project-summary">Portfolio website with dynamic animations.</p>
-      
-      <div class="tech-stack">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JS</span>
-        <span class="tech-tag">GSAP</span>
-      </div>
-      
-      <button class="view-more">
-        <span>View Details</span>
-        <span class="arrow">→</span>
+        <i class="fa-solid fa-arrow-right arrow"></i>
       </button>
       
       <div class="card-circuit"></div>
@@ -117,180 +50,96 @@
 </section>
 
 <!-- Project Modals -->
-
-<!-- Modal 1 -->
-<div id="modal1" class="modal" [class.active]="activeModal === 'modal1'" (click)="closeModal($event)">
+<div 
+  *ngFor="let project of projects"
+  [id]="project.id" 
+  class="modal" 
+  [class.active]="activeModal === project.id" 
+  (click)="closeModal($event)">
+  
   <div class="modal-content" (click)="$event.stopPropagation()">
+    
+    <!-- Modal Header -->
     <div class="modal-header">
-      <h3>Project One</h3>
-      <button class="close" (click)="closeModal($event)">&times;</button>
+      <div class="modal-title-wrapper">
+        <i [class]="project.icon + ' modal-icon'"></i>
+        <h3>{{ project.title }}</h3>
+      </div>
+      <button class="close" (click)="closeModal($event)">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
     
+    <!-- Modal Body -->
     <div class="modal-body">
+      
+      <!-- Project Image -->
       <div class="modal-image">
-        <img src="assets/project1-image.jpg" alt="Project One Screenshot">
-        <div class="image-overlay"></div>
+        <img [src]="project.image" [alt]="project.title + ' Screenshot'">
+        <div class="image-overlay">
+          <div class="overlay-badge">
+            <i class="fa-solid fa-eye"></i>
+            <span>Preview</span>
+          </div>
+        </div>
       </div>
       
+      <!-- Project Details -->
       <div class="modal-details">
+        
+        <!-- Overview Section -->
         <div class="detail-section">
-          <h4>Overview</h4>
-          <p>A web application for managing tasks efficiently. Users can create, update, and delete tasks in real-time with an intuitive drag-and-drop interface.</p>
+          <h4>
+            <i class="fa-solid fa-circle-info"></i>
+            Overview
+          </h4>
+          <p>{{ project.description }}</p>
         </div>
         
+        <!-- Features Section -->
+        <div class="detail-section" *ngIf="project.features && project.features.length > 0">
+          <h4>
+            <i class="fa-solid fa-star"></i>
+            Key Features
+          </h4>
+          <ul class="features-list">
+            <li *ngFor="let feature of project.features">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>{{ feature }}</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Tech Stack Section -->
         <div class="detail-section">
-          <h4>Tech Stack</h4>
-          <div class="tech-stack">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">React</span>
+          <h4>
+            <i class="fa-solid fa-code"></i>
+            Tech Stack
+          </h4>
+          <div class="tech-stack modal-tech-stack">
+            <span class="tech-tag" *ngFor="let tech of project.techStack">
+              <i class="fa-solid fa-layer-group"></i>
+              {{ tech }}
+            </span>
           </div>
         </div>
         
+        <!-- Action Buttons -->
         <div class="modal-actions">
-          <a href="#" class="action-btn primary">
+          <a [href]="project.liveDemo" class="action-btn primary" target="_blank">
+            <i class="fa-solid fa-rocket"></i>
             <span>Live Demo</span>
-            <span>🚀</span>
           </a>
-          <a href="#" class="action-btn secondary">
+          <a [href]="project.sourceCode" class="action-btn secondary" target="_blank">
+            <i class="fa-brands fa-github"></i>
             <span>View Code</span>
-            <span>📂</span>
           </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal 2 -->
-<div id="modal2" class="modal" [class.active]="activeModal === 'modal2'" (click)="closeModal($event)">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <h3>Project Two</h3>
-      <button class="close" (click)="closeModal($event)">&times;</button>
-    </div>
-    
-    <div class="modal-body">
-      <div class="modal-image">
-        <img src="assets/project2-image.jpg" alt="Project Two Screenshot">
-        <div class="image-overlay"></div>
-      </div>
-      
-      <div class="modal-details">
-        <div class="detail-section">
-          <h4>Overview</h4>
-          <p>E-commerce platform for small businesses. Features include product catalog, shopping cart, secure checkout, and order management system.</p>
+          <button class="action-btn tertiary" (click)="closeModal($event)">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back to Projects</span>
+          </button>
         </div>
         
-        <div class="detail-section">
-          <h4>Tech Stack</h4>
-          <div class="tech-stack">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Express</span>
-            <span class="tech-tag">MongoDB</span>
-          </div>
-        </div>
-        
-        <div class="modal-actions">
-          <a href="#" class="action-btn primary">
-            <span>Live Demo</span>
-            <span>🚀</span>
-          </a>
-          <a href="#" class="action-btn secondary">
-            <span>View Code</span>
-            <span>📂</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal 3 -->
-<div id="modal3" class="modal" [class.active]="activeModal === 'modal3'" (click)="closeModal($event)">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <h3>Project Three</h3>
-      <button class="close" (click)="closeModal($event)">&times;</button>
-    </div>
-    
-    <div class="modal-body">
-      <div class="modal-image">
-        <img src="assets/project3-image.jpg" alt="Project Three Screenshot">
-        <div class="image-overlay"></div>
-      </div>
-      
-      <div class="modal-details">
-        <div class="detail-section">
-          <h4>Overview</h4>
-          <p>Real-time chat application with notifications. Built with Firebase for instant messaging, file sharing, and cloud storage with push notifications.</p>
-        </div>
-        
-        <div class="detail-section">
-          <h4>Tech Stack</h4>
-          <div class="tech-stack">
-            <span class="tech-tag">Firebase</span>
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">Tailwind CSS</span>
-          </div>
-        </div>
-        
-        <div class="modal-actions">
-          <a href="#" class="action-btn primary">
-            <span>Live Demo</span>
-            <span>🚀</span>
-          </a>
-          <a href="#" class="action-btn secondary">
-            <span>View Code</span>
-            <span>📂</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal 4 -->
-<div id="modal4" class="modal" [class.active]="activeModal === 'modal4'" (click)="closeModal($event)">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <h3>Project Four</h3>
-      <button class="close" (click)="closeModal($event)">&times;</button>
-    </div>
-    
-    <div class="modal-body">
-      <div class="modal-image">
-        <img src="assets/project4-image.jpg" alt="Project Four Screenshot">
-        <div class="image-overlay"></div>
-      </div>
-      
-      <div class="modal-details">
-        <div class="detail-section">
-          <h4>Overview</h4>
-          <p>Portfolio website with dynamic animations using GSAP. Features smooth transitions, scroll-triggered animations, and fully responsive design.</p>
-        </div>
-        
-        <div class="detail-section">
-          <h4>Tech Stack</h4>
-          <div class="tech-stack">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">GSAP</span>
-          </div>
-        </div>
-        
-        <div class="modal-actions">
-          <a href="#" class="action-btn primary">
-            <span>Live Demo</span>
-            <span>🚀</span>
-          </a>
-          <a href="#" class="action-btn secondary">
-            <span>View Code</span>
-            <span>📂</span>
-          </a>
-        </div>
       </div>
     </div>
   </div>
