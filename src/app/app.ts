@@ -1,14 +1,35 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet, RouterLink,RouterLinkActive } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, Footer],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, Header, Footer],
+  template: `
+    <div class="app-wrapper">
+      <app-header></app-header>
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  `,
+  styles: [`
+    .app-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+  `]
 })
 export class App {
-  protected readonly title = signal('THARUKA');
+  title = 'Portfolio 2025';
 }

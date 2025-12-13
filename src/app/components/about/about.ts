@@ -1,66 +1,111 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit } from '@angular/core';
+
+interface TimelineItem {
+  year: string;
+  title: string;
+  company: string;
+  description: string;
+  achievements: string[];
+  type: 'work' | 'education' | 'award';
+}
+
+interface Stat {
+  value: string;
+  label: string;
+  description: string;
+  icon: string;
+}
 
 @Component({
   selector: 'app-about',
-  standalone: true,    // ✅ mark as standalone
-  imports: [CommonModule], // ✅ import CommonModule here
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './about.html',
-  styleUrls: ['./about.css'],
+  styleUrls: ['./about.css']
 })
-export class About implements AfterViewInit {
-  // Skills
-  skills = [
-    { name: 'Angular', level: 90, tags: ['Frontend', 'SPA', 'TypeScript'] },
-    { name: 'Node.js', level: 80, tags: ['Backend', 'API', 'Express'] },
-    { name: 'CSS & HTML', level: 95, tags: ['Frontend', 'UI', 'Responsive'] },
-  ];
-
-  @ViewChildren('skillBar') skillBars!: QueryList<ElementRef>;
-
-  ngAfterViewInit(): void {
-    // Animate each skill bar
-    this.skillBars.forEach((bar, index) => {
-      const skillLevel = this.skills[index].level;
-      setTimeout(() => {
-        bar.nativeElement.style.width = skillLevel + '%';
-      }, 200 * index); // stagger animation for effect
-    });
-  }
-
-  // Experience
-  experiences = [
+export class About {
+  stats: Stat[] = [
     {
-      period: '2022 - Present',
-      title: 'Full-Stack Developer',
-      company: 'Tech Corp',
-      description: 'Developing scalable web applications and APIs.',
-      technologies: ['Angular', 'Node.js', 'MongoDB']
+      value: '5+',
+      label: 'Projects Completed',
+      description: 'Successfully delivered',
+      icon: 'check-circle'
     },
     {
-      period: '2020 - 2022',
-      title: 'Frontend Developer',
-      company: 'Web Solutions',
-      description: 'Built interactive UI components and responsive designs.',
-      technologies: ['HTML', 'CSS', 'JavaScript']
-    }
-  ];
-
-  // Education
-  education = [
+      value: '1+',
+      label: 'Years Experience',
+      description: 'In web development',
+      icon: 'calendar'
+    },
     {
-      degree: 'B.Sc. in Computer Science',
-      institution: 'University of Tech',
-      period: '2016 - 2020',
-      details: 'Focused on software development and web technologies.'
+      value: '10+',
+      label: 'Happy Clients',
+      description: 'Worldwide',
+      icon: 'smile'
+    },
+    {
+      value: '5+',
+      label: 'Technologies',
+      description: 'Mastered',
+      icon: 'layers'
     }
   ];
 
-  // Achievements
-  achievements = [
-    { icon: '🏆', title: 'Best Developer Award', description: 'Recognized for outstanding performance.' },
-    { icon: '🌟', title: 'Hackathon Winner', description: 'Won 1st place in local hackathon.' }
+  timeline: TimelineItem[] = [
+    {
+      year: '2022',
+      title: 'Insuarance Consultant',
+      company: 'Arpico Insurance PLC',
+      description: 'Leading development team and architecting scalable solutions',
+      achievements: [
+        'Led migration to microservices architecture',
+        'Reduced load time by 40% through optimization',
+        'Mentored 5 junior developers'
+      ],
+      type: 'work'
+    },
+    {
+      year: '2023',
+      title: 'Diploma in Information Technology',
+      company: 'ESOFT Metro Campus',
+      description: 'Diploma certification in Information Technology',
+      achievements: [
+        'Passed with distinction',
+        'Enhanced knowledge in software development',
+      ],
+      type: 'award'
+    },
+    {
+      year: '2023',
+      title: 'Dean\'s List Award',
+      company: 'Sri Lanka Institute of Information Technology',
+      description: 'Recognized for academic excellence in Software Engineering',
+      achievements: [
+        'Top 10% of the class',
+        'Maintained a GPA of 3.7/4.0'
+      ],
+      type: 'award'
+    },
+    {
+      year: '2024',
+      title: 'Dean\'s List Award',
+      company: 'Sri Lanka Institute of Information Technology',
+      description: 'Recognized for academic excellence in Software Engineering',
+      achievements: [
+        'Top 10% of the class',
+        'Maintained a GPA of 3.8/4.0'
+      ],
+      type: 'award'
+    }
   ];
 
+  interests = [
+    { name: 'UI/UX Design', icon: 'palette' },
+    { name: 'Open Source', icon: 'github' },
+    { name: 'Tech Blogging', icon: 'pen' },
+    { name: 'Mentoring', icon: 'users' },
+    { name: 'Photography', icon: 'camera' },
+    { name: 'Traveling', icon: 'map' }
+  ];
 }

@@ -1,195 +1,225 @@
-<section class="skills-section">
+<section class="skills-section page-transition">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="heading-lg gradient-text">My Skills & Expertise</h1>
+      <p class="page-subtitle">A comprehensive overview of my technical abilities and certifications</p>
+    </div>
 
-    <!-- Page Title -->
-    <div class="skills-header">
-      <div class="header-glow"></div>
-      <h1 class="neon-heading">
-        <span class="bracket">&lt;</span>
-        My Skills
-        <span class="bracket">/&gt;</span>
-      </h1>
-      <p class="subtitle">Technologies and tools I work with</p>
-      <div class="header-line"></div>
-    </div>
-  
-    <!-- Skill Categories -->
-    <div class="skills-container">
-  
-      <!-- Frontend Skills -->
-      <div class="skill-card">
-        <div class="card-header">
-          <div class="card-icon">💻</div>
-          <h2>Frontend</h2>
+    <!-- Dashboard Stats -->
+    <div class="dashboard-stats">
+      <div class="stat-card glass-card">
+        <div class="stat-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
         </div>
-        <div class="card-glow"></div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">HTML</span>
-            <span class="percentage">95%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'95%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">CSS</span>
-            <span class="percentage">90%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'90%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">JavaScript</span>
-            <span class="percentage">85%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'85%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">Angular</span>
-            <span class="percentage">80%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'80%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
+        <div class="stat-content">
+          <h3 class="stat-value gradient-text">{{ experienceYears }}+</h3>
+          <p class="stat-label">Years Experience</p>
         </div>
       </div>
-  
-      <!-- Backend Skills -->
-      <div class="skill-card">
-        <div class="card-header">
-          <div class="card-icon">⚙️</div>
-          <h2>Backend</h2>
+
+      <div class="stat-card glass-card">
+        <div class="stat-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
         </div>
-        <div class="card-glow"></div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">Node.js</span>
-            <span class="percentage">75%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'75%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
+        <div class="stat-content">
+          <h3 class="stat-value gradient-text">{{ totalProjects }}+</h3>
+          <p class="stat-label">Projects Completed</p>
         </div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">Express.js</span>
-            <span class="percentage">70%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'70%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">MongoDB</span>
-            <span class="percentage">65%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'65%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
-        </div>
-  
       </div>
-  
-      <!-- Tools -->
-      <div class="skill-card">
-        <div class="card-header">
-          <div class="card-icon">🛠️</div>
-          <h2>Tools</h2>
+
+      <div class="stat-card glass-card">
+        <div class="stat-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
         </div>
-        <div class="card-glow"></div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">Git & GitHub</span>
-            <span class="percentage">90%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'90%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
+        <div class="stat-content">
+          <h3 class="stat-value gradient-text">{{ technologiesMastered }}+</h3>
+          <p class="stat-label">Technologies</p>
         </div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">Figma</span>
-            <span class="percentage">70%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'70%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="skill-item">
-          <div class="skill-label">
-            <span class="skill-name">VS Code</span>
-            <span class="percentage">95%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width]="'95%'">
-              <div class="progress-shimmer"></div>
-            </div>
-          </div>
-        </div>
-  
       </div>
-  
-    </div>
-  
-    <!-- Extra Section: Currently Learning -->
-    <div class="extra-section">
-      <div class="learning-header">
-        <div class="pulse-dot"></div>
-        <h2>Currently Learning</h2>
-      </div>
-      <div class="learning-grid">
-        <div class="learning-item">
-          <span class="learning-bullet">▸</span>
-          <span>Advanced Angular</span>
+
+      <div class="stat-card glass-card">
+        <div class="stat-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="7"/>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+          </svg>
         </div>
-        <div class="learning-item">
-          <span class="learning-bullet">▸</span>
-          <span>Node.js Performance Optimization</span>
-        </div>
-        <div class="learning-item">
-          <span class="learning-bullet">▸</span>
-          <span>Tailwind CSS</span>
-        </div>
-        <div class="learning-item">
-          <span class="learning-bullet">▸</span>
-          <span>AI Integration with Web Apps</span>
+        <div class="stat-content">
+          <h3 class="stat-value gradient-text">{{ certifications.length }}</h3>
+          <p class="stat-label">Certifications</p>
         </div>
       </div>
     </div>
-  
-  </section>
+
+    <!-- Category Filter -->
+    <div class="category-filter-section">
+      <h3 class="filter-title">Filter by Category</h3>
+      <div class="category-filters">
+        <button 
+          *ngFor="let category of categories"
+          class="filter-btn glass-card"
+          [class.active]="selectedCategory === category.id"
+          (click)="selectCategory(category.id)">
+          <span class="filter-name">{{ category.name }}</span>
+          <span class="filter-count">{{ category.count }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="skills-grid">
+      <div 
+        class="skill-card glass-card card-interactive"
+        *ngFor="let skill of filteredSkills; let i = index"
+        [class.animate]="animateSkills"
+        [style.animation-delay]="(i * 0.05) + 's'">
+        
+        <div class="skill-header">
+          <div class="skill-icon" [style.background-color]="skill.color + '20'" [style.border-color]="skill.color + '40'">
+            <div class="icon-wrapper" [style.color]="skill.color">
+              <!-- Generic Code Icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+          </div>
+          <div class="skill-info">
+            <h4 class="skill-name">{{ skill.name }}</h4>
+            <span class="skill-experience">{{ skill.experience }}</span>
+          </div>
+        </div>
+
+        <div class="skill-progress-section">
+          <div class="progress-header">
+            <span class="progress-label">Proficiency</span>
+            <span class="progress-value gradient-text">{{ skill.level }}%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div 
+              class="progress-bar-fill" 
+              [class.animate]="animateSkills"
+              [style.width.%]="skill.level"
+              [style.background]="'linear-gradient(90deg, ' + skill.color + ', ' + skill.color + 'CC)'">
+              <div class="progress-shine"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Circular Progress Alternative -->
+        <div class="circular-progress">
+          <svg class="progress-ring" width="80" height="80">
+            <circle
+              class="progress-ring-circle-bg"
+              stroke="#1a1f3a"
+              stroke-width="6"
+              fill="transparent"
+              r="34"
+              cx="40"
+              cy="40"/>
+            <circle
+              class="progress-ring-circle"
+              [attr.stroke]="skill.color"
+              stroke-width="6"
+              fill="transparent"
+              r="34"
+              cx="40"
+              cy="40"
+              [style.stroke-dasharray]="213.628"
+              [style.stroke-dashoffset]="213.628 - (213.628 * skill.level / 100)"
+              [class.animate]="animateSkills"/>
+          </svg>
+          <div class="progress-ring-text">
+            <span class="progress-percentage" [style.color]="skill.color">{{ skill.level }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="certifications-section">
+      <div class="section-header-inline">
+        <h2 class="section-title gradient-text">Certifications & Achievements</h2>
+        <button class="btn btn-outline" (click)="downloadResume()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Download Resume</span>
+        </button>
+      </div>
+
+      <div class="certifications-grid">
+        <div class="cert-card glass-card card-interactive" *ngFor="let cert of certifications">
+          <div class="cert-badge">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="8" r="7"/>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+            </svg>
+          </div>
+          <div class="cert-content">
+            <h4 class="cert-title">{{ cert.title }}</h4>
+            <p class="cert-issuer">{{ cert.issuer }}</p>
+            <span class="cert-date">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              {{ cert.date }}
+            </span>
+          </div>
+          <a [href]="cert.credentialUrl" class="cert-link" target="_blank" rel="noopener">
+            <span>View Credential</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Expertise -->
+    <div class="expertise-section glass-card">
+      <h3 class="expertise-title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        Additional Expertise & Methodologies
+      </h3>
+      <div class="expertise-tags">
+        <span class="expertise-tag clay-card">Agile/Scrum</span>
+        <span class="expertise-tag clay-card">Test-Driven Development</span>
+        <span class="expertise-tag clay-card">Microservices Architecture</span>
+        <span class="expertise-tag clay-card">RESTful API Design</span>
+        <span class="expertise-tag clay-card">Progressive Web Apps</span>
+        <span class="expertise-tag clay-card">Responsive Design</span>
+        <span class="expertise-tag clay-card">Performance Optimization</span>
+        <span class="expertise-tag clay-card">Security Best Practices</span>
+        <span class="expertise-tag clay-card">Cloud Architecture</span>
+        <span class="expertise-tag clay-card">DevOps Practices</span>
+        <span class="expertise-tag clay-card">UI/UX Principles</span>
+        <span class="expertise-tag clay-card">Code Review</span>
+        <span class="expertise-tag clay-card">Team Leadership</span>
+        <span class="expertise-tag clay-card">Technical Documentation</span>
+        <span class="expertise-tag clay-card">Continuous Integration</span>
+        <span class="expertise-tag clay-card">Database Design</span>
+      </div>
+    </div>
+  </div>
+</section>

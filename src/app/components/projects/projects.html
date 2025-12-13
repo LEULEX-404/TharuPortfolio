@@ -1,146 +1,305 @@
-<!-- Projects Section -->
-<section class="projects-section">
-  
-  <!-- Header -->
-  <div class="projects-header">
-    <h2 class="neon-heading">
-      <span class="bracket">&lt;</span>
-      Featured Projects
-      <span class="bracket">/&gt;</span>
-    </h2>
-    <p class="subtitle">Building innovative solutions with cutting-edge technologies</p>
-    <div class="header-line"></div>
-  </div>
-
-  <!-- Projects Grid -->
-  <div class="projects-grid">
-    
-    <!-- Project Card -->
-    <div 
-      *ngFor="let project of projects" 
-      class="project-card" 
-      (click)="openModal(project.id)"
-      [attr.data-number]="project.number">
-      
-      <div class="card-glow"></div>
-      <div class="project-number">{{ project.number }}</div>
-      
-      <div class="project-icon">
-        <fa-icon [icon]="project.icon" size="1x"class="gradient-icon"></fa-icon>
-      </div>
-      
-      <h3>{{ project.title }}</h3>
-      <p class="project-summary">{{ project.summary }}</p>
-      
-      <div class="tech-stack">
-        <span class="tech-tag" *ngFor="let tech of project.techStack">
-          {{ tech }}
-        </span>
-      </div>
-      
-      <button class="view-more">
-        <span>View Details</span>
-        <i class="fa-solid fa-arrow-right arrow"></i>
-      </button>
-      
-      <div class="card-circuit"></div>
+<section class="projects-section page-transition">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="heading-lg gradient-text">My Projects</h1>
+      <p class="page-subtitle">
+        A showcase of my recent work and achievements across various domains
+      </p>
     </div>
 
-  </div>
-</section>
-
-<!-- Project Modals -->
-<div 
-  *ngFor="let project of projects"
-  [id]="project.id" 
-  class="modal" 
-  [class.active]="activeModal === project.id" 
-  (click)="closeModal($event)">
-  
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    
-    <!-- Modal Header -->
-    <div class="modal-header">
-      <div class="modal-title-wrapper">
-        <i [class]="project.icon + ' modal-icon'"></i>
-        <h3>{{ project.title }}</h3>
-      </div>
-      <button class="close" (click)="closeModal($event)">
-        <i class="fa-solid fa-xmark"></i>
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button
+        *ngFor="let category of categories"
+        class="filter-btn glass-card"
+        [class.active]="selectedCategory === category.id"
+        (click)="selectCategory(category.id)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Grid Icon -->
+          <rect *ngIf="category.icon === 'grid'" x="3" y="3" width="7" height="7"/>
+          <rect *ngIf="category.icon === 'grid'" x="14" y="3" width="7" height="7"/>
+          <rect *ngIf="category.icon === 'grid'" x="14" y="14" width="7" height="7"/>
+          <rect *ngIf="category.icon === 'grid'" x="3" y="14" width="7" height="7"/>
+          <!-- Monitor Icon -->
+          <rect *ngIf="category.icon === 'monitor'" x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line *ngIf="category.icon === 'monitor'" x1="8" y1="21" x2="16" y2="21"/>
+          <line *ngIf="category.icon === 'monitor'" x1="12" y1="17" x2="12" y2="21"/>
+          <!-- Smartphone Icon -->
+          <rect *ngIf="category.icon === 'smartphone'" x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+          <line *ngIf="category.icon === 'smartphone'" x1="12" y1="18" x2="12.01" y2="18"/>
+          <!-- Bar Chart Icon -->
+          <line *ngIf="category.icon === 'bar-chart'" x1="12" y1="20" x2="12" y2="10"/>
+          <line *ngIf="category.icon === 'bar-chart'" x1="18" y1="20" x2="18" y2="4"/>
+          <line *ngIf="category.icon === 'bar-chart'" x1="6" y1="20" x2="6" y2="16"/>
+          <!-- Shopping Cart Icon -->
+          <circle *ngIf="category.icon === 'shopping-cart'" cx="9" cy="21" r="1"/>
+          <circle *ngIf="category.icon === 'shopping-cart'" cx="20" cy="21" r="1"/>
+          <path *ngIf="category.icon === 'shopping-cart'" d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span>{{ category.name }}</span>
       </button>
     </div>
-    
-    <!-- Modal Body -->
-    <div class="modal-body">
-      
-      <!-- Project Image -->
-      <div class="modal-image">
-        <img [src]="project.image" [alt]="project.title + ' Screenshot'">
-        <div class="image-overlay">
-          <div class="overlay-badge">
-            <i class="fa-solid fa-eye"></i>
-            <span>Preview</span>
+
+    <!-- Projects Grid - Bento Layout -->
+    <div class="projects-grid">
+      <div
+        *ngFor="let project of filteredProjects; let i = index"
+        class="project-card glass-card card-interactive"
+        [class.featured]="project.featured"
+        [class.large]="project.featured && i < 2"
+        (click)="openProjectDetails(project)">
+        
+        <!-- Featured Badge -->
+        <div class="featured-badge" *ngIf="project.featured">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>Featured</span>
+        </div>
+
+        <!-- Project Image -->
+        <div class="project-image">
+          <img [src]="project.image" [alt]="project.title" loading="lazy">
+          <div class="image-overlay">
+            <button class="view-details-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+              <span>View Details</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Content -->
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <span class="project-date">{{ project.completedDate }}</span>
+          </div>
+
+          <p class="project-description">{{ project.shortDescription }}</p>
+
+          <!-- Technologies -->
+          <div class="tech-stack">
+            <span class="tech-tag" *ngFor="let tech of project.technologies.slice(0, 4)">
+              {{ tech }}
+            </span>
+            <span class="tech-more" *ngIf="project.technologies.length > 4">
+              +{{ project.technologies.length - 4 }}
+            </span>
+          </div>
+
+          <!-- Metrics (for featured projects) -->
+          <div class="project-metrics" *ngIf="project.featured && project.metrics">
+            <div class="metric-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span>{{ project.metrics.users }}</span>
+            </div>
+            <div class="metric-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <span>{{ project.metrics.rating }}</span>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="project-links">
+            <a [href]="project.liveUrl" *ngIf="project.liveUrl" 
+               class="project-link" 
+               (click)="$event.stopPropagation()"
+               target="_blank"
+               rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              <span>Live Demo</span>
+            </a>
+            <a [href]="project.githubUrl" *ngIf="project.githubUrl" 
+               class="project-link" 
+               (click)="$event.stopPropagation()"
+               target="_blank"
+               rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>Source Code</span>
+            </a>
           </div>
         </div>
       </div>
-      
-      <!-- Project Details -->
-      <div class="modal-details">
+    </div>
+  </div>
+
+  <!-- Side Panel for Project Details -->
+  <div class="side-panel-overlay" *ngIf="sidePanelOpen" (click)="closeProjectDetails()"></div>
+  
+  <div class="side-panel" [class.open]="sidePanelOpen" *ngIf="selectedProject">
+    <div class="side-panel-content">
+      <!-- Close Button -->
+      <button class="close-panel-btn" (click)="closeProjectDetails()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Screenshot Gallery -->
+      <div class="screenshot-gallery">
+        <img 
+          [src]="selectedProject.screenshots[currentScreenshot]" 
+          [alt]="selectedProject.title"
+          class="gallery-image">
         
-        <!-- Overview Section -->
-        <div class="detail-section">
-          <h4>
-            <i class="fa-solid fa-circle-info"></i>
-            Overview
-          </h4>
-          <p>{{ project.description }}</p>
+        <button class="gallery-nav prev" (click)="prevScreenshot()" *ngIf="selectedProject.screenshots.length > 1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="gallery-nav next" (click)="nextScreenshot()" *ngIf="selectedProject.screenshots.length > 1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+
+        <div class="gallery-indicators" *ngIf="selectedProject.screenshots.length > 1">
+          <span 
+            *ngFor="let screenshot of selectedProject.screenshots; let i = index"
+            class="indicator"
+            [class.active]="i === currentScreenshot"
+            (click)="currentScreenshot = i"></span>
         </div>
-        
-        <!-- Features Section -->
-        <div class="detail-section" *ngIf="project.features && project.features.length > 0">
-          <h4>
-            <i class="fa-solid fa-star"></i>
-            Key Features
-          </h4>
+      </div>
+
+      <!-- Project Details -->
+      <div class="panel-details">
+        <div class="detail-header">
+          <h2 class="detail-title gradient-text">{{ selectedProject.title }}</h2>
+          <div class="detail-meta">
+            <span class="meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              {{ selectedProject.completedDate }}
+            </span>
+            <span class="meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              {{ selectedProject.duration }}
+            </span>
+            <span class="meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              {{ selectedProject.team }}
+            </span>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h4 class="section-subtitle">Project Overview</h4>
+          <p class="detail-description">{{ selectedProject.fullDescription }}</p>
+        </div>
+
+        <div class="detail-section">
+          <h4 class="section-subtitle">My Role</h4>
+          <p class="role-text">{{ selectedProject.role }}</p>
+        </div>
+
+        <!-- Metrics -->
+        <div class="detail-section" *ngIf="selectedProject.metrics">
+          <h4 class="section-subtitle">Project Impact</h4>
+          <div class="metrics-grid">
+            <div class="metric-card clay-card" *ngFor="let metric of selectedProject.metrics | keyvalue">
+              <span class="metric-label">{{ metric.key }}</span>
+              <span class="metric-value gradient-text">{{ metric.value }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="detail-section">
+          <h4 class="section-subtitle">Key Features</h4>
           <ul class="features-list">
-            <li *ngFor="let feature of project.features">
-              <i class="fa-solid fa-check-circle"></i>
-              <span>{{ feature }}</span>
+            <li *ngFor="let feature of selectedProject.features">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              {{ feature }}
             </li>
           </ul>
         </div>
-        
-        <!-- Tech Stack Section -->
+
+        <!-- Technologies -->
         <div class="detail-section">
-          <h4>
-            <i class="fa-solid fa-code"></i>
-            Tech Stack
-          </h4>
-          <div class="tech-stack modal-tech-stack">
-            <span class="tech-tag" *ngFor="let tech of project.techStack">
-              <i class="fa-solid fa-layer-group"></i>
+          <h4 class="section-subtitle">Technologies Used</h4>
+          <div class="tech-tags-list">
+            <span class="tech-tag-detail" *ngFor="let tech of selectedProject.technologies">
               {{ tech }}
             </span>
           </div>
         </div>
-        
-        <!-- Action Buttons -->
-        <div class="modal-actions">
-          <a [href]="project.liveDemo" class="action-btn primary" target="_blank">
-            <i class="fa-solid fa-rocket"></i>
-            <span>Live Demo</span>
-          </a>
-          <a [href]="project.sourceCode" class="action-btn secondary" target="_blank">
-            <i class="fa-brands fa-github"></i>
-            <span>View Code</span>
-          </a>
-          <button class="action-btn tertiary" (click)="closeModal($event)">
-            <i class="fa-solid fa-arrow-left"></i>
-            <span>Back to Projects</span>
-          </button>
+
+        <!-- Challenges & Solutions -->
+        <div class="detail-section" *ngIf="selectedProject.challenges">
+          <h4 class="section-subtitle">Challenges & Solutions</h4>
+          <div class="challenge-solution">
+            <div class="challenge-box">
+              <h5>Challenges</h5>
+              <ul>
+                <li *ngFor="let challenge of selectedProject.challenges">{{ challenge }}</li>
+              </ul>
+            </div>
+            <div class="solution-box">
+              <h5>Solutions</h5>
+              <ul>
+                <li *ngFor="let solution of selectedProject.solutions">{{ solution }}</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        
+
+        <!-- Actions -->
+        <div class="detail-actions">
+          <a [href]="selectedProject.liveUrl" *ngIf="selectedProject.liveUrl" 
+             class="btn btn-primary" 
+             target="_blank"
+             rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            <span>Visit Live Site</span>
+          </a>
+          <a [href]="selectedProject.githubUrl" *ngIf="selectedProject.githubUrl" 
+             class="btn btn-outline" 
+             target="_blank"
+             rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>View Source Code</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
