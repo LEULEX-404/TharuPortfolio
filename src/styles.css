@@ -339,3 +339,10 @@ section {
     transition-duration: 0.01ms !important;
   }
 }
+
+app-root {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-height: 100vh;
+}
