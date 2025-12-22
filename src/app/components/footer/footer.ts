@@ -33,14 +33,14 @@ export class Footer implements OnInit {
     },
     { 
       name: 'LinkedIn', 
-      url: 'https://linkedin.com', 
+      url: 'https://www.linkedin.com/in/miyuru-tharuka-1b769a376', 
       icon: 'linkedin',
       color: '#0077b5'
     },
     { 
       name: 'Facebook', 
-      url: 'https://twitter.com', 
-      icon: 'twitter',
+      url: 'https://web.facebook.com/TharukaFB', 
+      icon: 'facebook',
       color: '#1da1f2'
     },
     { 

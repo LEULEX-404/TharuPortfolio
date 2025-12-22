@@ -57,11 +57,10 @@ export class About {
       year: '2022',
       title: 'Insuarance Consultant',
       company: 'Arpico Insurance PLC',
-      description: 'Leading development team and architecting scalable solutions',
+      description: 'Worked as an Insurance Consultant, providing tailored insurance solutions to clients.',
       achievements: [
-        'Led migration to microservices architecture',
-        'Reduced load time by 40% through optimization',
-        'Mentored 5 junior developers'
+        'Advised clients on insurance policies',
+        'Achieved highest sales in the region for Q4 2022'
       ],
       type: 'work'
     },
@@ -74,7 +73,7 @@ export class About {
         'Passed with distinction',
         'Enhanced knowledge in software development',
       ],
-      type: 'award'
+      type: 'education'
     },
     {
       year: '2023',
@@ -102,8 +101,8 @@ export class About {
 
   interests = [
     { name: 'UI/UX Design', icon: 'palette' },
-    { name: 'Open Source', icon: 'github' },
-    { name: 'Tech Blogging', icon: 'pen' },
+    { name: 'Gaming', icon: 'gaming' },
+    { name: 'Music', icon: 'music' },
     { name: 'Mentoring', icon: 'users' },
     { name: 'Photography', icon: 'camera' },
     { name: 'Traveling', icon: 'map' }
