@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 interface Project {
   id: number;
@@ -28,20 +29,58 @@ interface Project {
   features: string[];
 }
 
+interface Category {
+  id: string;
+  name: string;
+  icon: string;
+}
+
 @Component({
   selector: 'app-projects',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './projects.html',
-  styleUrls: ['./projects.css']
+  styleUrl: './projects.css',
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('400ms cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 0 }))
+      ])
+    ]),
+    trigger('slideIn', [
+      transition(':enter', [
+        style({ transform: 'translateX(100%)', opacity: 0 }),
+        animate('500ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ transform: 'translateX(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('400ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ transform: 'translateX(100%)', opacity: 0 }))
+      ])
+    ]),
+    trigger('cardAnimation', [
+      transition(':enter', [
+        animate('600ms cubic-bezier(0.4, 0, 0.2, 1)', keyframes([
+          style({ opacity: 0, transform: 'translateY(50px) scale(0.9)', offset: 0 }),
+          style({ opacity: 0.5, transform: 'translateY(-10px) scale(1.02)', offset: 0.7 }),
+          style({ opacity: 1, transform: 'translateY(0) scale(1)', offset: 1 })
+        ]))
+      ])
+    ])
+  ]
 })
 export class Projects implements OnInit {
   selectedCategory = 'all';
   selectedProject: Project | null = null;
   sidePanelOpen = false;
   currentScreenshot = 0;
+  isLoading = false;
 
-  categories = [
+  categories: Category[] = [
     { id: 'all', name: 'All Projects', icon: 'grid' },
     { id: 'web', name: 'Web Applications', icon: 'monitor' },
     { id: 'mobile', name: 'Mobile Apps', icon: 'smartphone' }
@@ -51,8 +90,8 @@ export class Projects implements OnInit {
     {
       id: 1,
       title: 'Dairy Product HR Management Dashboard',
-      shortDescription: 'The Dairy Product HR Management Dashboard is a centralized system designed to manage employee details, track attendance, and handle salary calculations efficiently. It helps HR staff streamline workforce operations, improve accuracy, and maintain organized employee records within the dairy product organization.',
-      fullDescription:'The Dairy Product HR Management Dashboard is a comprehensive human resource management system developed specifically for a dairy product organization. The system simplifies and automates core HR activities such as employee management, attendance management, and salary management to ensure efficient workforce administration. The Employee Management module allows HR administrators to add, update, view, and remove employee records including personal details, job roles, departments, and employment status, ensuring all employee information is stored securely and can be accessed easily when required. The Attendance Management module records daily employee attendance, working hours, leaves, and absences, helping the organization monitor punctuality, manage shift-based work, and generate attendance reports essential for payroll processing. The Salary Management module calculates employee salaries based on attendance, basic salary, allowances, deductions, and overtime, ensuring accurate and timely salary processing while reducing manual errors. Overall, the Dairy Product HR Management Dashboard improves operational efficiency, transparency, and decision-making by providing a user-friendly interface and reliable HR data management tailored for the dairy product industry.',
+      shortDescription: 'A centralized system designed to manage employee details, track attendance, and handle salary calculations efficiently for dairy organizations.',
+      fullDescription: 'The Dairy Product HR Management Dashboard is a comprehensive human resource management system developed specifically for a dairy product organization. The system simplifies and automates core HR activities such as employee management, attendance management, and salary management to ensure efficient workforce administration.',
       category: 'web',
       technologies: ['Node.js', 'React', 'MongoDB', 'HTML', 'CSS'],
       image: 'Projects/1.png',
@@ -62,17 +101,17 @@ export class Projects implements OnInit {
         'Projects/1.3.png'
       ],
       featured: true,
-      liveUrl: 'https://ruhunu-yoghurt.onrender.com',
+      liveUrl: 'https://ruhunu-yoghurt-imo.vercel.app/home',
       githubUrl: 'https://github.com/LEULEX-404/Ruhunu_Yoghurt',
-      completedDate: 'Oct 2025',
+      completedDate: 'Oct 2024',
       duration: '4 months',
       team: '5 developers',
       role: 'Full Stack Developer',
       metrics: {
         users: '10+ Active Users',
-        performance: '98/100 Lighthouse Score',
-        rating: '4.9/5.0 User Rating',
-        impact: '40% Efficiency Increase'
+        performance: '98/100 Score',
+        rating: '4.9/5.0',
+        impact: '40% Efficiency'
       },
       challenges: [
         'Managing accurate employee and attendance records',
@@ -91,13 +130,13 @@ export class Projects implements OnInit {
         'User-friendly HR dashboard',
         'Reports generation for management',
         'Role-based access control'
-      ]      
+      ]
     },
     {
       id: 2,
       title: 'Customer Care System',
-      shortDescription: 'The Customer Care System is a web-based platform that allows users to raise support tickets and track replies, while technicians can respond to issues. Administrators can manage users and post announcements, and managers can oversee tickets and account management, ensuring smooth communication and efficient support workflow.',
-      fullDescription: 'The Customer Care System is a comprehensive support management platform designed to streamline communication between users and the support team. Users can submit support tickets, track their status, and view responses from technicians, enabling faster issue resolution. Technicians can respond to tickets, update their status, and ensure timely solutions. Administrators have the ability to manage user accounts, add announcements, and oversee general system operations. Managers can monitor ticket progress, manage user roles, and handle account permissions, providing oversight and maintaining system integrity. Overall, the system improves customer support efficiency, ensures proper communication flow, and provides role-based access control for different levels of staff, making it an effective tool for managing organizational support operations.',
+      shortDescription: 'A web-based platform that allows users to raise support tickets and track replies, while technicians can respond to issues efficiently.',
+      fullDescription: 'The Customer Care System is a comprehensive support management platform designed to streamline communication between users and the support team. Users can submit support tickets, track their status, and view responses from technicians, enabling faster issue resolution.',
       category: 'web',
       technologies: ['Java', 'HTML', 'MySQL', 'MVC', 'CSS'],
       image: 'Projects/2.jpg',
@@ -109,15 +148,15 @@ export class Projects implements OnInit {
       featured: true,
       liveUrl: 'https://example.com',
       githubUrl: 'https://github.com/Imogirl/Smart-Customer-Care-System',
-      completedDate: 'April 2025',
+      completedDate: 'April 2024',
       duration: '4 months',
       team: '4 developers',
       role: 'Full Stack Developer',
       metrics: {
-        users: '10+ Monthly Visitors',
-        performance: '95/100 Lighthouse Score',
-        rating: '4.7/5.0 Customer Rating',
-        impact: '50% Efficiency Increase'
+        users: '10+ Visitors',
+        performance: '95/100 Score',
+        rating: '4.7/5.0',
+        impact: '50% Efficiency'
       },
       challenges: [
         'Handling multiple support tickets simultaneously',
@@ -132,19 +171,19 @@ export class Projects implements OnInit {
       features: [
         'Raise and track support tickets',
         'Technician replies and ticket updates',
-        'Role-based access for users, admins, and managers',
-        'Announcements and notifications for users',
-        'User account management by admins',
-        'Manager oversight for tickets and accounts',
+        'Role-based access control',
+        'Announcements and notifications',
+        'User account management',
+        'Manager oversight dashboard',
         'Search and filter tickets',
-        'Dashboard with ticket statistics and activity logs'
-      ]      
+        'Activity logs and statistics'
+      ]
     },
     {
       id: 3,
       title: 'POS System for Cake Shop',
-      shortDescription: 'The POS System for Cake Shop is a point-of-sale application designed to manage sales, generate invoices, track stock, and analyze reports. It streamlines order processing, inventory management, and business analytics to improve efficiency and decision-making in a cake shop.',
-      fullDescription: 'The POS System for Cake Shop is a comprehensive point-of-sale solution tailored for cake shops and small bakeries. The system allows cashiers and staff to process sales efficiently and generate accurate invoices for customers. The Stock Management module helps track inventory levels, update product quantities in real-time, and prevent stock shortages. The Report & Analysis module provides detailed insights into sales trends, revenue, and inventory usage, supporting data-driven business decisions. Overall, the system enhances operational efficiency, reduces manual errors, and provides an intuitive interface for managing daily shop operations, inventory, and sales reporting.',
+      shortDescription: 'A point-of-sale application designed to manage sales, generate invoices, track stock, and analyze reports for bakeries.',
+      fullDescription: 'The POS System for Cake Shop is a comprehensive point-of-sale solution tailored for cake shops and small bakeries. The system allows cashiers and staff to process sales efficiently and generate accurate invoices for customers.',
       category: 'web',
       technologies: ['Node.js', 'Express', 'React', 'MongoDB'],
       image: 'Projects/3.jpg',
@@ -156,14 +195,14 @@ export class Projects implements OnInit {
       featured: true,
       liveUrl: 'https://cake-shop-mern-frontend.onrender.com/',
       githubUrl: 'https://github.com/LEULEX-404/Cake_Shop_MERN',
-      completedDate: 'Dec 2025',
-      duration: '1 months',
+      completedDate: 'Dec 2024',
+      duration: '1 month',
       team: '2 developers',
       role: 'Full Stack Developer',
       metrics: {
         users: '100+ Active Users',
-        performance: '96/100 Lighthouse Score',
-        rating: '4.8/5.0 User Rating',
+        performance: '96/100 Score',
+        rating: '4.8/5.0',
         impact: '60% Time Saved'
       },
       challenges: [
@@ -177,18 +216,18 @@ export class Projects implements OnInit {
         'Built a reporting module to generate sales and inventory analytics'
       ],
       features: [
-        'Generate invoices for customer orders',
-        'Manage stock and update inventory in real-time',
-        'Analyze sales and inventory reports',
-        'Track daily, weekly, and monthly revenue',
-        'Manage multiple product categories',
-        'User-friendly dashboard for staff and managers'
-      ]      
+        'Generate invoices for orders',
+        'Real-time stock management',
+        'Sales and inventory reports',
+        'Revenue tracking',
+        'Product categories',
+        'User-friendly dashboard'
+      ]
     },
     {
       id: 4,
       title: 'Gift Delivering Mobile App',
-      shortDescription: 'Cross-platform gift delivery app with real-time tracking and notifications',
+      shortDescription: 'Cross-platform gift delivery app with real-time tracking and notifications for seamless customer experience.',
       fullDescription: 'Mobile application for gift delivery services featuring real-time tracking, notifications, and user-friendly interface for customers.',
       category: 'mobile',
       technologies: ['Kotlin', 'Intents'],
@@ -201,14 +240,14 @@ export class Projects implements OnInit {
       featured: false,
       liveUrl: 'https://example.com',
       githubUrl: 'https://github.com',
-      completedDate: 'Aug 2025',
-      duration: '1 months',
-      team: '1 developers',
+      completedDate: 'Aug 2024',
+      duration: '1 month',
+      team: '1 developer',
       role: 'Mobile Developer',
       metrics: {
         users: '5+ Users',
-        performance: '4.5/5.0 App Store Rating',
-        impact: '80% User Retention'
+        rating: '4.5/5.0',
+        impact: '80% Retention'
       },
       challenges: [
         'Implementing real-time order tracking',
@@ -230,7 +269,7 @@ export class Projects implements OnInit {
     {
       id: 5,
       title: 'Health Tracker Mobile App',
-      shortDescription: 'Cross-platform health tracking application with real-time data synchronization',
+      shortDescription: 'Cross-platform health tracking application with real-time data synchronization and comprehensive analytics.',
       fullDescription: 'Mobile application for health tracking and monitoring, featuring real-time data synchronization, user-friendly interface, and comprehensive health analytics.',
       category: 'mobile',
       technologies: ['Kotlin', 'Intents', 'SharedPreferences'],
@@ -243,14 +282,14 @@ export class Projects implements OnInit {
       featured: false,
       liveUrl: 'https://example.com',
       githubUrl: 'https://github.com',
-      completedDate: 'Sep 2025',
-      duration: '1 months',
-      team: '1 developers',
+      completedDate: 'Sep 2024',
+      duration: '1 month',
+      team: '1 developer',
       role: 'Mobile Developer',
       metrics: {
         users: '5+ Users',
-        performance: '94/100 Lighthouse Score',
-        rating: '4.6/5.0 User Rating'
+        performance: '94/100 Score',
+        rating: '4.6/5.0'
       },
       challenges: [
         'Implementing real-time health data synchronization',
@@ -263,7 +302,7 @@ export class Projects implements OnInit {
         'Designed a clean and user-friendly mobile interface'
       ],
       features: [
-        'Real-time health data synchronization',
+        'Real-time health data sync',
         'Comprehensive health analytics',
         'User profile management',
         'Health goal tracking'
@@ -287,18 +326,27 @@ export class Projects implements OnInit {
   }
 
   openProjectDetails(project: Project) {
+    this.isLoading = true;
     this.selectedProject = project;
     this.currentScreenshot = 0;
-    this.sidePanelOpen = true;
-    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+      this.sidePanelOpen = true;
+      this.isLoading = false;
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'hidden';
+      }
+    }, 50);
   }
 
   closeProjectDetails() {
     this.sidePanelOpen = false;
-    document.body.style.overflow = 'auto';
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = 'auto';
+    }
     setTimeout(() => {
       this.selectedProject = null;
-    }, 300);
+    }, 500);
   }
 
   nextScreenshot() {
@@ -315,12 +363,19 @@ export class Projects implements OnInit {
     }
   }
 
+  getMetricsArray(metrics: any): Array<{key: string, value: string}> {
+    return Object.keys(metrics).map(key => ({
+      key: key.charAt(0).toUpperCase() + key.slice(1),
+      value: metrics[key]
+    }));
+  }
+
   @HostListener('document:keydown', ['$event'])
   handleKeyPress(event: KeyboardEvent) {
     if (event.key === 'Escape' && this.sidePanelOpen) {
       this.closeProjectDetails();
     }
-    if (this.sidePanelOpen) {
+    if (this.sidePanelOpen && this.selectedProject) {
       if (event.key === 'ArrowRight') {
         this.nextScreenshot();
       }

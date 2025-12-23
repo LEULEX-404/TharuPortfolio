@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface TimelineItem {
@@ -17,6 +17,11 @@ interface Stat {
   icon: string;
 }
 
+interface Interest {
+  name: string;
+  icon: string;
+}
+
 @Component({
   selector: 'app-about',
   standalone: true,
@@ -24,7 +29,7 @@ interface Stat {
   templateUrl: './about.html',
   styleUrls: ['./about.css']
 })
-export class About {
+export class About implements OnInit, AfterViewInit {
   stats: Stat[] = [
     {
       value: '5+',
@@ -55,7 +60,7 @@ export class About {
   timeline: TimelineItem[] = [
     {
       year: '2022',
-      title: 'Insuarance Consultant',
+      title: 'Insurance Consultant',
       company: 'Arpico Insurance PLC',
       description: 'Worked as an Insurance Consultant, providing tailored insurance solutions to clients.',
       achievements: [
@@ -71,7 +76,7 @@ export class About {
       description: 'Diploma certification in Information Technology',
       achievements: [
         'Passed with distinction',
-        'Enhanced knowledge in software development',
+        'Enhanced knowledge in software development'
       ],
       type: 'education'
     },
@@ -99,7 +104,7 @@ export class About {
     }
   ];
 
-  interests = [
+  interests: Interest[] = [
     { name: 'UI/UX Design', icon: 'palette' },
     { name: 'Gaming', icon: 'gaming' },
     { name: 'Music', icon: 'music' },
@@ -107,4 +112,96 @@ export class About {
     { name: 'Photography', icon: 'camera' },
     { name: 'Traveling', icon: 'map' }
   ];
+
+  constructor(private elementRef: ElementRef) {}
+
+  ngOnInit() {
+    // Component initialization
+  }
+
+  ngAfterViewInit() {
+    this.initScrollAnimations();
+    this.animateNumbers();
+  }
+
+  // 3D Card Tilt Effect
+  onCardHover(event: MouseEvent) {
+    const card = event.currentTarget as HTMLElement;
+    card.style.transform = 'scale(1.02)';
+  }
+
+  onCardMove(event: MouseEvent) {
+    const card = event.currentTarget as HTMLElement;
+    const rect = card.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+  }
+
+  onCardLeave(event: MouseEvent) {
+    const card = event.currentTarget as HTMLElement;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+  }
+
+  // Scroll-triggered animations
+  private initScrollAnimations() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    // Observe timeline items
+    const timelineItems = this.elementRef.nativeElement.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item: Element) => observer.observe(item));
+
+    // Observe reveal text
+    const revealTexts = this.elementRef.nativeElement.querySelectorAll('.reveal-text');
+    revealTexts.forEach((text: Element) => observer.observe(text));
+
+    // Observe interest cards
+    const interestCards = this.elementRef.nativeElement.querySelectorAll('.interest-card');
+    interestCards.forEach((card: Element) => observer.observe(card));
+  }
+
+  // Animate stat numbers
+  private animateNumbers() {
+    const statValues = this.elementRef.nativeElement.querySelectorAll('.stat-value');
+    
+    statValues.forEach((stat: HTMLElement) => {
+      const target = stat.getAttribute('data-value') || '0';
+      const numericValue = parseInt(target.replace(/\D/g, '')) || 0;
+      const suffix = target.replace(/[0-9]/g, '');
+      
+      let current = 0;
+      const increment = numericValue / 50;
+      const duration = 2000;
+      const stepTime = duration / 50;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= numericValue) {
+          stat.textContent = numericValue + suffix;
+          clearInterval(timer);
+        } else {
+          stat.textContent = Math.floor(current) + suffix;
+        }
+      }, stepTime);
+    });
+  }
 }

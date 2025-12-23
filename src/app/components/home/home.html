@@ -59,7 +59,6 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v-9.294H9.692V11.01h3.129V8.309c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.696h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
             </svg>
-            
           </a>
           <a href="mailto:miyurut20@gmail.com" class="social-link" aria-label="Email">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -151,10 +150,53 @@
     </div>
   </div>
 
-  <!-- Floating Decoration -->
-  <div class="floating-decoration">
-    <div class="float-shape shape-1"></div>
-    <div class="float-shape shape-2"></div>
-    <div class="float-shape shape-3"></div>
+  <!-- Animated Background Grid -->
+  <div class="bg-grid"></div>
+  
+  <!-- Particle System -->
+  <div class="particles">
+    <div class="particle" *ngFor="let item of particleArray; let idx = index" 
+         [style.animation-delay.s]="idx * 0.2"
+         [style.left.%]="(idx * 5)"
+         [style.animation-duration.s]="3 + (idx % 3)">
+    </div>
+  </div>
+
+  <!-- Floating Icons -->
+  <div class="floating-icons">
+    <div class="floating-icon icon-1">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    </div>
+    <div class="floating-icon icon-2">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+    </div>
+    <div class="floating-icon icon-3">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+    </div>
+    <div class="floating-icon icon-4">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="7" height="7"/>
+        <rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/>
+        <rect x="3" y="14" width="7" height="7"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Spotlight Effect -->
+  <div class="spotlight"></div>
+  
+  <!-- Gradient Orbs -->
+  <div class="gradient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
   </div>
 </section>

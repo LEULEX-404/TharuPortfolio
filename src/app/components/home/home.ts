@@ -21,6 +21,7 @@ export class Home implements OnInit, OnDestroy {
   currentRole = '';
   isDeleting = false;
   private typeInterval: any;
+  particleArray = Array(20).fill(0);
 
   stats = [
     { value: '5+', label: 'Projects', icon: 'briefcase' },
@@ -76,12 +77,22 @@ export class Home implements OnInit, OnDestroy {
   }
 
   downloadCV() {
-    // Implement CV download
+    // Implement CV download logic here
+    // Example: window.open('assets/cv/your-cv.pdf', '_blank');
     console.log('Downloading CV...');
+    
+    // You can create a link element and trigger download
+    const link = document.createElement('a');
+    link.href = 'assets/cv/tharuka-cv.pdf'; // Update with your CV path
+    link.download = 'Tharuka-Miyuru-CV.pdf';
+    link.click();
   }
 
   scrollToContact() {
     // Scroll to footer contact section
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    window.scrollTo({ 
+      top: document.body.scrollHeight, 
+      behavior: 'smooth' 
+    });
   }
 }
