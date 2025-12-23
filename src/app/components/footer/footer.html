@@ -1,91 +1,133 @@
 <footer class="footer">
+  <!-- Animated Background Effects -->
+  <div class="footer-bg-effects">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+    <div class="grid-pattern"></div>
+    <div class="floating-particles">
+      <div class="particle" *ngFor="let particle of particles" [style.left.%]="particle.x" [style.animation-delay.s]="particle.delay"></div>
+    </div>
+  </div>
+
   <!-- Contact Section -->
   <section class="contact-section">
     <div class="container">
-      <div class="contact-grid">
-        <!-- Contact Info -->
-        <div class="contact-info-column">
-          <h2 class="section-title gradient-text">Let's Work Together</h2>
-          <p class="section-description">
-            Have a project in mind? Let's discuss how I can help bring your ideas to life.
-            I'm always open to discussing product design work or partnership opportunities.
-          </p>
+      <!-- Section Header with Animation -->
+      <div class="section-header">
+        <div class="header-decoration">
+          <span class="line"></span>
+          <span class="dot"></span>
+          <span class="line"></span>
+        </div>
+        <h2 class="main-title gradient-text">Let's Create Something Amazing</h2>
+        <p class="main-subtitle">Transform your ideas into reality with cutting-edge solutions</p>
+      </div>
 
-          <!-- Contact Info Cards -->
-          <div class="info-cards">
-            <div class="info-card glass-card" *ngFor="let info of contactInfo">
-              <div class="info-icon">
-                <!-- Map Pin -->
-                <svg *ngIf="info.icon === 'map-pin'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
-                </svg>
-                <!-- Mail -->
-                <svg *ngIf="info.icon === 'mail'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-                <!-- Phone -->
-                <svg *ngIf="info.icon === 'phone'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-                <!-- Globe -->
-                <svg *ngIf="info.icon === 'globe'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                </svg>
-              </div>
-              <div class="info-content">
-                <h4 class="info-title">{{ info.title }}</h4>
-                <a [href]="info.link" *ngIf="info.link" class="info-value">{{ info.value }}</a>
-                <p class="info-value" *ngIf="!info.link">{{ info.value }}</p>
+      <div class="contact-grid">
+        <!-- Contact Info Column -->
+        <div class="contact-info-column">
+          <div class="info-content-wrapper">
+            <h3 class="section-title gradient-text">Get In Touch</h3>
+            <p class="section-description">
+              Have a project in mind? Let's discuss how I can help bring your ideas to life.
+              I'm always open to discussing product design work or partnership opportunities.
+            </p>
+
+            <!-- Contact Info Cards with Stagger Animation -->
+            <div class="info-cards">
+              <div class="info-card glass-card" 
+                   *ngFor="let info of contactInfo; let i = index"
+                   [style.animation-delay.s]="i * 0.1">
+                <div class="info-icon">
+                  <div class="icon-bg-pulse"></div>
+                  <!-- Map Pin -->
+                  <svg *ngIf="info.icon === 'map-pin'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <!-- Mail -->
+                  <svg *ngIf="info.icon === 'mail'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <!-- Phone -->
+                  <svg *ngIf="info.icon === 'phone'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                  <!-- Globe -->
+                  <svg *ngIf="info.icon === 'globe'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                  </svg>
+                </div>
+                <div class="info-content">
+                  <h4 class="info-title">{{ info.title }}</h4>
+                  <a [href]="info.link" *ngIf="info.link" class="info-value">{{ info.value }}</a>
+                  <p class="info-value" *ngIf="!info.link">{{ info.value }}</p>
+                </div>
+                <div class="card-shine"></div>
               </div>
             </div>
-          </div>
 
-          <!-- Social Links -->
-          <div class="social-links-section">
-            <h4 class="social-title">Follow Me</h4>
-            <div class="social-links">
-              <a 
-                *ngFor="let social of socialLinks" 
-                [href]="social.url"
-                class="social-link"
-                [attr.aria-label]="social.name"
-                target="_blank"
-                rel="noopener noreferrer">
-                <!-- GitHub -->
-                <svg *ngIf="social.icon === 'github'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                <!-- LinkedIn -->
-                <svg *ngIf="social.icon === 'linkedin'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                <!-- Facebook -->
-                <svg *ngIf="social.icon === 'facebook'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                <!-- Mail -->
-                <svg *ngIf="social.icon === 'mail'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-              </a>
+            <!-- Social Links Section -->
+            <div class="social-links-section glass-card">
+              <div class="social-header">
+                <h4 class="social-title">Connect With Me</h4>
+                <div class="social-pulse"></div>
+              </div>
+              <div class="social-links">
+                <a 
+                  *ngFor="let social of socialLinks; let i = index" 
+                  [href]="social.url"
+                  class="social-link"
+                  [attr.aria-label]="social.name"
+                  [style.animation-delay.s]="i * 0.1"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <div class="social-bg"></div>
+                  <!-- GitHub -->
+                  <svg *ngIf="social.icon === 'github'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  <!-- LinkedIn -->
+                  <svg *ngIf="social.icon === 'linkedin'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <!-- Facebook -->
+                  <svg *ngIf="social.icon === 'facebook'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  <!-- Mail -->
+                  <svg *ngIf="social.icon === 'mail'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <span class="social-tooltip">{{ social.name }}</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Availability Badge -->
+            <div class="availability-badge">
+              <div class="status-indicator"></div>
+              <span>Available for freelance projects</span>
             </div>
           </div>
         </div>
 
-        <!-- Contact Form -->
+        <!-- Contact Form Column -->
         <div class="contact-form-column">
           <div class="form-container glass-card">
-            <h3 class="form-title">Send Me a Message</h3>
-            <p class="form-subtitle">Fill out the form below and I'll get back to you as soon as possible.</p>
+            <div class="form-header">
+              <h3 class="form-title">Send Me a Message</h3>
+              <p class="form-subtitle">Fill out the form below and I'll get back to you as soon as possible.</p>
+            </div>
 
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
               <!-- Name Field -->
-              <div class="form-group">
+              <div class="form-group" [class.focused]="isFieldFocused('name')">
                 <label for="name" class="form-label">
                   Your Name
                   <span class="required">*</span>
@@ -97,19 +139,29 @@
                     formControlName="name"
                     class="form-input"
                     [class.error]="isFieldInvalid('name')"
-                    placeholder="Your Name">
-                  <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
+                    (focus)="onFieldFocus('name')"
+                    (blur)="onFieldBlur('name')"
+                    placeholder="John Doe">
+                  <div class="input-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </div>
+                  <div class="input-border"></div>
                 </div>
                 <span class="error-message" *ngIf="isFieldInvalid('name')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
                   {{ getFieldError('name') }}
                 </span>
               </div>
 
               <!-- Email Field -->
-              <div class="form-group">
+              <div class="form-group" [class.focused]="isFieldFocused('email')">
                 <label for="email" class="form-label">
                   Email Address
                   <span class="required">*</span>
@@ -121,19 +173,29 @@
                     formControlName="email"
                     class="form-input"
                     [class.error]="isFieldInvalid('email')"
-                    placeholder="Yourname@gmail.com">
-                  <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                  </svg>
+                    (focus)="onFieldFocus('email')"
+                    (blur)="onFieldBlur('email')"
+                    placeholder="john@example.com">
+                  <div class="input-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </div>
+                  <div class="input-border"></div>
                 </div>
                 <span class="error-message" *ngIf="isFieldInvalid('email')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
                   {{ getFieldError('email') }}
                 </span>
               </div>
 
               <!-- Subject Field -->
-              <div class="form-group">
+              <div class="form-group" [class.focused]="isFieldFocused('subject')">
                 <label for="subject" class="form-label">
                   Subject
                   <span class="required">*</span>
@@ -145,18 +207,28 @@
                     formControlName="subject"
                     class="form-input"
                     [class.error]="isFieldInvalid('subject')"
+                    (focus)="onFieldFocus('subject')"
+                    (blur)="onFieldBlur('subject')"
                     placeholder="Project Inquiry">
-                  <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
+                  <div class="input-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </div>
+                  <div class="input-border"></div>
                 </div>
                 <span class="error-message" *ngIf="isFieldInvalid('subject')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
                   {{ getFieldError('subject') }}
                 </span>
               </div>
 
               <!-- Message Field -->
-              <div class="form-group">
+              <div class="form-group" [class.focused]="isFieldFocused('message')">
                 <label for="message" class="form-label">
                   Message
                   <span class="required">*</span>
@@ -167,13 +239,21 @@
                     formControlName="message"
                     class="form-textarea"
                     [class.error]="isFieldInvalid('message')"
+                    (focus)="onFieldFocus('message')"
+                    (blur)="onFieldBlur('message')"
                     rows="5"
                     placeholder="Tell me about your project..."></textarea>
-                  <span class="char-count">
-                    {{ contactForm.get('message')?.value?.length || 0 }} / 500
+                  <span class="char-count" [class.max]="getCharCount() >= 500">
+                    {{ getCharCount() }} / 500
                   </span>
+                  <div class="input-border"></div>
                 </div>
                 <span class="error-message" *ngIf="isFieldInvalid('message')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
                   {{ getFieldError('message') }}
                 </span>
               </div>
@@ -182,13 +262,16 @@
               <button
                 type="submit"
                 class="btn btn-primary submit-btn"
-                [disabled]="formStatus === 'loading'">
+                [disabled]="formStatus === 'loading'"
+                [class.loading]="formStatus === 'loading'"
+                [class.success]="formStatus === 'success'">
                 <span *ngIf="formStatus === 'idle'" class="btn-content">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="22" y1="2" x2="11" y2="13"/>
                     <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                   </svg>
                   Send Message
+                  <div class="btn-shine"></div>
                 </span>
                 <span *ngIf="formStatus === 'loading'" class="btn-content">
                   <div class="spinner"></div>
@@ -237,32 +320,93 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="footer-content">
+        <!-- Footer Brand -->
         <div class="footer-brand">
           <div class="brand-logo">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 2L4 8V24L16 30L28 24V8L16 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M16 16L4 8M16 16L28 8M16 16V30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+            <div class="logo-container">
+              <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+                <path d="M16 2L4 8V24L16 30L28 24V8L16 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M16 16L4 8M16 16L28 8M16 16V30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <div class="logo-glow"></div>
+            </div>
             <span class="gradient-text">Portfolio</span>
           </div>
           <p class="brand-tagline">Building the future, one line of code at a time.</p>
+          
+          <!-- Stats Counter -->
+          <div class="stats-mini">
+            <div class="stat-item">
+              <span class="stat-number">{{ stats.projects }}+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">{{ stats.experience }}+</span>
+              <span class="stat-label">Years</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">{{ stats.clients }}+</span>
+              <span class="stat-label">Clients</span>
+            </div>
+          </div>
         </div>
 
+        <!-- Quick Links -->
         <div class="footer-links-section">
-          <h4 class="footer-links-title">Quick Links</h4>
+          <h4 class="footer-links-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+            Quick Links
+          </h4>
           <nav class="footer-nav">
             <a *ngFor="let link of quickLinks" [routerLink]="link.path" class="footer-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"/>
+              </svg>
               {{ link.label }}
             </a>
           </nav>
         </div>
 
+        <!-- Services Links -->
+        <div class="footer-links-section">
+          <h4 class="footer-links-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+            Services
+          </h4>
+          <nav class="footer-nav">
+            <a *ngFor="let service of services" class="footer-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"/>
+              </svg>
+              {{ service }}
+            </a>
+          </nav>
+        </div>
+
+        <!-- Newsletter -->
         <div class="footer-newsletter">
-          <h4 class="newsletter-title">Stay Updated</h4>
-          <p class="newsletter-desc">Subscribe to get notified about new projects</p>
+          <h4 class="newsletter-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Stay Updated
+          </h4>
+          <p class="newsletter-desc">Subscribe to get notified about new projects and updates</p>
           <div class="newsletter-form">
-            <input type="email" placeholder="Enter your email" class="newsletter-input">
-            <button class="newsletter-btn">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              class="newsletter-input"
+              [(ngModel)]="newsletterEmail">
+            <button class="newsletter-btn" (click)="subscribeNewsletter()">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="22" y1="2" x2="11" y2="13"/>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -272,15 +416,45 @@
         </div>
       </div>
 
-      <div class="footer-divider"></div>
+      <!-- Animated Divider -->
+      <div class="footer-divider">
+        <div class="divider-line"></div>
+        <div class="divider-dot"></div>
+      </div>
 
+      <!-- Copyright Section -->
       <div class="footer-copyright">
-        <p class="copyright-text">
-          &copy; {{ currentYear }} <span class="gradient-text">Miyuru Tharuka</span>. All rights reserved.
-        </p>
-        <p class="made-with">
-          Made with <span class="heart">❤️</span> using Angular {{ '21' }}
-        </p>
+        <div class="copyright-left">
+          <p class="copyright-text">
+            &copy; {{ currentYear }} <span class="gradient-text">Miyuru Tharuka</span>. All rights reserved.
+          </p>
+          <div class="legal-links">
+            <a class="legal-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a class="legal-link">Terms of Service</a>
+            <span class="separator">•</span>
+            <a class="legal-link">Sitemap</a>
+          </div>
+        </div>
+        
+        <div class="copyright-right">
+          <p class="made-with">
+            Crafted with <span class="heart">❤️</span> using 
+            <span class="tech-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              Angular
+            </span>
+          </p>
+          <div class="version-info">
+            <span class="version">v2.0.1</span>
+            <span class="status online">
+              <span class="status-dot"></span>
+              Online
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -294,5 +468,6 @@
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="18 15 12 9 6 15"/>
     </svg>
+    <div class="btn-ripple"></div>
   </button>
 </footer>

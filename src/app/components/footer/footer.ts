@@ -3,6 +3,30 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+interface Particle {
+  x: number;
+  delay: number;
+}
+
+interface ContactInfo {
+  icon: string;
+  title: string;
+  value: string;
+  link: string | null;
+}
+
+interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+  color: string;
+}
+
+interface QuickLink {
+  label: string;
+  path: string;
+}
+
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -16,15 +40,36 @@ export class Footer implements OnInit {
   errorMessage = '';
   showScrollTop = false;
   currentYear = new Date().getFullYear();
+  newsletterEmail = '';
+  
+  // Track focused fields
+  focusedFields: Set<string> = new Set();
 
-  quickLinks = [
+  // Floating particles for background effect
+  particles: Particle[] = [];
+
+  // Stats
+  stats = {
+    projects: 5,
+    experience: 1,
+    clients: 10
+  };
+
+  quickLinks: QuickLink[] = [
     { label: 'Home', path: '/home' },
     { label: 'About', path: '/about' },
     { label: 'Skills', path: '/skills' },
     { label: 'Projects', path: '/projects' }
   ];
 
-  socialLinks = [
+  services: string[] = [
+    'Web Development',
+    'Mobile Apps',
+    'UI/UX Design',
+    'Consulting'
+  ];
+
+  socialLinks: SocialLink[] = [
     { 
       name: 'GitHub', 
       url: 'https://github.com/LEULEX-404', 
@@ -51,7 +96,7 @@ export class Footer implements OnInit {
     }
   ];
 
-  contactInfo = [
+  contactInfo: ContactInfo[] = [
     {
       icon: 'map-pin',
       title: 'Location',
@@ -82,6 +127,8 @@ export class Footer implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
+    this.generateParticles();
+    this.animateStats();
   }
 
   initializeForm() {
@@ -91,6 +138,41 @@ export class Footer implements OnInit {
       subject: ['', [Validators.required, Validators.minLength(5)]],
       message: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]]
     });
+  }
+
+  generateParticles() {
+    // Generate random particles for floating animation
+    for (let i = 0; i < 20; i++) {
+      this.particles.push({
+        x: Math.random() * 100,
+        delay: Math.random() * 15
+      });
+    }
+  }
+
+  animateStats() {
+    // Animate stats counter on init
+    const duration = 2000; // 2 seconds
+    const steps = 50;
+    const interval = duration / steps;
+
+    const targets = { ...this.stats };
+    this.stats = { projects: 0, experience: 0, clients: 0 };
+
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      
+      this.stats.projects = Math.floor(targets.projects * progress);
+      this.stats.experience = Math.floor(targets.experience * progress);
+      this.stats.clients = Math.floor(targets.clients * progress);
+
+      if (step >= steps) {
+        this.stats = targets;
+        clearInterval(timer);
+      }
+    }, interval);
   }
 
   get formControls() {
@@ -108,12 +190,12 @@ export class Footer implements OnInit {
     this.formStatus = 'loading';
     this.errorMessage = '';
 
-    // Simulate API call
     try {
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Simulate random success/error for demo
-      const success = Math.random() > 0.1; // 90% success rate
+      // Simulate random success/error for demo (90% success rate)
+      const success = Math.random() > 0.1;
       
       if (success) {
         this.formStatus = 'success';
@@ -143,6 +225,18 @@ export class Footer implements OnInit {
     return !!(field && field.invalid && (field.dirty || field.touched));
   }
 
+  isFieldFocused(fieldName: string): boolean {
+    return this.focusedFields.has(fieldName);
+  }
+
+  onFieldFocus(fieldName: string) {
+    this.focusedFields.add(fieldName);
+  }
+
+  onFieldBlur(fieldName: string) {
+    this.focusedFields.delete(fieldName);
+  }
+
   getFieldError(fieldName: string): string {
     const field = this.formControls[fieldName];
     if (field?.errors) {
@@ -162,6 +256,24 @@ export class Footer implements OnInit {
     return '';
   }
 
+  getCharCount(): number {
+    return this.contactForm.get('message')?.value?.length || 0;
+  }
+
+  subscribeNewsletter() {
+    if (this.newsletterEmail && this.validateEmail(this.newsletterEmail)) {
+      // Handle newsletter subscription
+      console.log('Newsletter subscription for:', this.newsletterEmail);
+      // Show success message or handle subscription logic
+      this.newsletterEmail = '';
+    }
+  }
+
+  validateEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   scrollToTop() {
     window.scrollTo({
       top: 0,
@@ -171,6 +283,6 @@ export class Footer implements OnInit {
 
   @HostListener('window:scroll')
   onWindowScroll() {
-    this.showScrollTop = window.scrollY > 300;
+    this.showScrollTop = window.scrollY > 400;
   }
 }
