@@ -48,7 +48,7 @@
 <br/>
 
 <!-- Preview Image with Border -->
-<img src="https://raw.githubusercontent.com/LEULEX-404/TharuPortfolio/main/public/portfolio.png" width="90%" style="border-radius: 20px; border: 3px solid #667EEA;"/>
+<img src="https://raw.githubusercontent.com/LEULEX-404/TharuPortfolio/main/public/portfolionew.png" width="90%" style="border-radius: 20px; border: 3px solid #667EEA;"/>
 
 <br/><br/>
 
