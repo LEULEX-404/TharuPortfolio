@@ -45,7 +45,6 @@ export class Home implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initMouseTracking();
-    // Start typing immediately when component loads
     this.typeWriter();
   }
 
