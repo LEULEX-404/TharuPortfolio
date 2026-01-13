@@ -25,21 +25,7 @@ export class Home implements OnInit, OnDestroy {
   mouseX = 0;
   mouseY = 0;
 
-  stats = [
-    { value: '5+', label: 'Projects Completed', icon: 'briefcase' },
-    { value: '1+', label: 'Years Experience', icon: 'clock' },
-    { value: '10+', label: 'Happy Clients', icon: 'users' },
-    { value: '100%', label: 'Client Satisfaction', icon: 'heart' }
-  ];
-
-  technologies = [
-    { name: 'Angular', color: 'linear-gradient(135deg, #dd0031, #c3002f)' },
-    { name: 'React', color: 'linear-gradient(135deg, #61dafb, #21a1c4)' },
-    { name: 'Node.js', color: 'linear-gradient(135deg, #339933, #66cc66)' },
-    { name: 'TypeScript', color: 'linear-gradient(135deg, #3178c6, #235a97)' },
-    { name: 'MongoDB', color: 'linear-gradient(135deg, #47a248, #00ed64)' },
-    { name: 'AWS', color: 'linear-gradient(135deg, #ff9900, #ec7211)' }
-  ];
+ 
 
   constructor(private cdr: ChangeDetectorRef) {}
 
