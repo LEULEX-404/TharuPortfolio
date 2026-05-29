@@ -1,6 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { trigger, style, transition, animate } from '@angular/animations';
 
 interface Project {
   id: number;
@@ -53,27 +53,22 @@ interface Category {
     ]),
     trigger('slideIn', [
       transition(':enter', [
-        style({ transform: 'translateX(100%)', opacity: 0 }),
-        animate('500ms cubic-bezier(0.4, 0, 0.2, 1)', 
-          style({ transform: 'translateX(0)', opacity: 1 }))
+        style({ transform: 'translate(-50%, -50%) scale(0.96)', opacity: 0 }),
+        animate('420ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ transform: 'translate(-50%, -50%) scale(1)', opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('400ms cubic-bezier(0.4, 0, 0.2, 1)', 
-          style({ transform: 'translateX(100%)', opacity: 0 }))
+        animate('300ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ transform: 'translate(-50%, -50%) scale(0.96)', opacity: 0 }))
       ])
     ]),
-    trigger('cardAnimation', [
-      transition(':enter', [
-        animate('600ms cubic-bezier(0.4, 0, 0.2, 1)', keyframes([
-          style({ opacity: 0, transform: 'translateY(50px) scale(0.9)', offset: 0 }),
-          style({ opacity: 0.5, transform: 'translateY(-10px) scale(1.02)', offset: 0.7 }),
-          style({ opacity: 1, transform: 'translateY(0) scale(1)', offset: 1 })
-        ]))
-      ])
-    ])
   ]
 })
-export class Projects implements OnInit {
+export class Projects implements OnInit, AfterViewInit, OnDestroy {
+  private revealObserver?: IntersectionObserver;
+
+  constructor(private elementRef: ElementRef) {}
+
   selectedCategory = 'all';
   selectedProject: Project | null = null;
   sidePanelOpen = false;
@@ -314,6 +309,14 @@ export class Projects implements OnInit {
     // Initialize component
   }
 
+  ngAfterViewInit() {
+    this.initScrollAnimations();
+  }
+
+  ngOnDestroy() {
+    this.revealObserver?.disconnect();
+  }
+
   get filteredProjects(): Project[] {
     if (this.selectedCategory === 'all') {
       return this.projects;
@@ -323,6 +326,36 @@ export class Projects implements OnInit {
 
   selectCategory(categoryId: string) {
     this.selectedCategory = categoryId;
+  }
+
+  private initScrollAnimations() {
+    const root = this.elementRef.nativeElement as HTMLElement;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      root.querySelectorAll('.page-header, .category-filter-wrapper, .project-card')
+        .forEach((element: Element) => element.classList.add('animate-in'));
+      return;
+    }
+
+    this.revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          this.revealObserver?.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    root.querySelectorAll('.page-header, .category-filter-wrapper')
+      .forEach((element: Element) => this.revealObserver?.observe(element));
+
+    root.querySelectorAll('.project-card').forEach((card: Element, index: number) => {
+      (card as HTMLElement).style.setProperty('--reveal-delay', `${index * 0.1}s`);
+      this.revealObserver?.observe(card);
+    });
   }
 
   openProjectDetails(project: Project) {

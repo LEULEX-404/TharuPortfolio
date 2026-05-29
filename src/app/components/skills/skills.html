@@ -1,4 +1,4 @@
-<section class="skills-section page-transition">
+<section id="skills" class="skills-section page-transition">
   <div class="container">
     <!-- Animated Page Header -->
     <div class="page-header">
@@ -91,7 +91,7 @@
     <div class="skills-grid">
       <div 
         class="skill-card glass-card card-interactive"
-        *ngFor="let skill of filteredSkills; let i = index"
+        *ngFor="let skill of filteredSkills; let i = index; trackBy: trackBySkill"
         [style.animation-delay.s]="i * 0.05"
         (mouseenter)="onSkillHover($event)"
         (mousemove)="onSkillMove($event)"
@@ -105,12 +105,8 @@
             <div class="skill-icon" 
                  [style.background]="'linear-gradient(135deg, ' + skill.color + '20, ' + skill.color + '10)'"
                  [style.border-color]="skill.color + '40'">
-              <div class="icon-wrapper" [style.color]="skill.color">
-                <!-- Dynamic Icon based on skill -->
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="16 18 22 12 16 6"/>
-                  <polyline points="8 6 2 12 8 18"/>
-                </svg>
+              <div class="skill-badge" [style.color]="skill.color">
+                <img class="skill-badge-image" [src]="skill.badgeUrl" [alt]="skill.name + ' badge'" loading="lazy">
               </div>
               <div class="icon-glow-effect" [style.background]="skill.color"></div>
             </div>

@@ -8,6 +8,8 @@ interface TimelineItem {
   description: string;
   achievements: string[];
   type: 'work' | 'education' | 'award';
+  image?: string;
+  imageAlt?: string;
 }
 
 interface Stat {
@@ -38,7 +40,7 @@ export class About implements OnInit, AfterViewInit {
       icon: 'check-circle'
     },
     {
-      value: '1+',
+      value: '2+',
       label: 'Years Experience',
       description: 'In web development',
       icon: 'calendar'
@@ -89,7 +91,9 @@ export class About implements OnInit, AfterViewInit {
         'Top 10% of the class',
         'Maintained a GPA of 3.7/4.0'
       ],
-      type: 'award'
+      type: 'award',
+      image: '/images/2023.jpg',
+      imageAlt: '2023 Dean\'s List award certificate'
     },
     {
       year: '2024',
@@ -100,7 +104,22 @@ export class About implements OnInit, AfterViewInit {
         'Top 10% of the class',
         'Maintained a GPA of 3.8/4.0'
       ],
-      type: 'award'
+      type: 'award',
+      image: '/images/2024.jpg',
+      imageAlt: '2024 Dean\'s List award certificate'
+    },
+    {
+      year: '2025',
+      title: 'Dean\'s List Award',
+      company: 'Sri Lanka Institute of Information Technology',
+      description: 'Recognized for academic excellence in Software Engineering',
+      achievements: [
+        'Top 10% of the class',
+        'Maintained a GPA of 3.7/4.0'
+      ],
+      type: 'award',
+      image: '/images/2025.jpg',
+      imageAlt: '2025 Dean\'s List award certificate'
     }
   ];
 
@@ -152,6 +171,15 @@ export class About implements OnInit, AfterViewInit {
 
   // Scroll-triggered animations
   private initScrollAnimations() {
+    if (typeof IntersectionObserver === 'undefined') {
+      const elements = this.elementRef.nativeElement.querySelectorAll(
+        '.page-header, .identity-card, .bio-card, .stats-section, .timeline-section .section-header, .interests-section .section-header, .timeline-item, .reveal-text, .interest-card'
+      );
+
+      elements.forEach((element: Element) => element.classList.add('animate-in'));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -169,6 +197,12 @@ export class About implements OnInit, AfterViewInit {
     // Observe timeline items
     const timelineItems = this.elementRef.nativeElement.querySelectorAll('.timeline-item');
     timelineItems.forEach((item: Element) => observer.observe(item));
+
+    // Observe top-level section blocks
+    const sectionBlocks = this.elementRef.nativeElement.querySelectorAll(
+      '.page-header, .identity-card, .bio-card, .stats-section, .timeline-section .section-header, .interests-section .section-header'
+    );
+    sectionBlocks.forEach((block: Element) => observer.observe(block));
 
     // Observe reveal text
     const revealTexts = this.elementRef.nativeElement.querySelectorAll('.reveal-text');

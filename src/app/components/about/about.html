@@ -1,4 +1,4 @@
-<section class="about-section page-transition">
+<section id="about" class="about-section page-transition">
   <div class="container">
     <!-- Page Header with Animated Elements -->
     <div class="page-header">
@@ -23,43 +23,45 @@
 
     <!-- Main Content Grid - Bento Layout -->
     <div class="content-grid">
-      <!-- Profile Card with 3D Effect -->
-      <div class="profile-card glass-card card-interactive" 
+      <!-- Identity Card with 3D Effect -->
+      <div class="identity-card glass-card card-interactive" 
            (mouseenter)="onCardHover($event)" 
            (mousemove)="onCardMove($event)"
            (mouseleave)="onCardLeave($event)">
         <div class="card-glow"></div>
-        <div class="profile-image">
-          <div class="image-ring ring-1"></div>
-          <div class="image-ring ring-2"></div>
-          <div class="image-placeholder">
-            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
+        <div class="identity-orbit"></div>
+        <div class="identity-header">
+          <div class="identity-mark" aria-hidden="true">
+            <span>MT</span>
+            <div class="identity-ring identity-ring-1"></div>
+            <div class="identity-ring identity-ring-2"></div>
           </div>
-          <div class="status-indicator">
-            <span class="status-dot"></span>
-            <div class="status-ripple"></div>
+          <div class="identity-copy">
+            <p class="identity-kicker">At a glance</p>
+            <h2 class="identity-name">Miyuru Tharuka</h2>
+            <p class="profile-role gradient-text">Full Stack Developer</p>
           </div>
         </div>
-        <h2 class="profile-name">Miyuru Tharuka</h2>
-        <p class="profile-role gradient-text">Full Stack Developer</p>
-        <div class="profile-meta">
-          <div class="meta-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            <span>Kaduwela, Sri Lanka</span>
+        <p class="identity-summary">
+          I build polished digital products with a focus on clean architecture,
+          responsive UI, and smooth user experiences.
+        </p>
+        <div class="identity-tags">
+          <span>Angular</span>
+          <span>React</span>
+          <span>Node.js</span>
+          <span>UI Motion</span>
+        </div>
+        <div class="identity-metrics">
+          <div class="identity-metric">
+            <span class="metric-label">Based in</span>
+            <strong>Kaduwela, Sri Lanka</strong>
           </div>
-          <div class="meta-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-            </svg>
-            <span>Open to work</span>
+          <div class="identity-metric">
+            <span class="metric-label">Focus</span>
+            <strong>Modern web apps</strong>
           </div>
+
         </div>
       </div>
 
@@ -77,13 +79,13 @@
         </div>
         <div class="bio-content">
           <p class="reveal-text">
-            I'm a passionate Full Stack Developer with <strong>1+ years</strong> of experience building 
+            I'm a passionate Full Stack Developer with <strong>2+ years</strong> of experience building 
             exceptional digital products. My journey in tech started with a curiosity about how 
             things work on the web, which evolved into a career dedicated to creating innovative solutions.
           </p>
           <p class="reveal-text">
             I specialize in modern web technologies, with expertise in <strong>Angular</strong>, 
-            <strong>React</strong>, and <strong>Node.js</strong>. I believe in writing clean, 
+            <strong>React</strong>, <strong>Spring Boot</strong> and <strong>Node.js</strong>. I believe in writing clean, 
             maintainable code and building applications that provide real value to users.
           </p>
           <p class="reveal-text">
@@ -151,6 +153,22 @@
              [style.animation-delay.s]="0.2 * i">
           <div class="timeline-content glass-card card-interactive">
             <div class="card-shine"></div>
+            <div class="timeline-media">
+              <div class="timeline-image-frame" *ngIf="item.image; else timelineImagePlaceholder">
+                <img [src]="item.image" [alt]="item.imageAlt || item.title + ' image'" loading="lazy">
+              </div>
+              <ng-template #timelineImagePlaceholder>
+                <div class="timeline-image-frame timeline-image-placeholder" aria-hidden="true">
+                  <div class="placeholder-badge">Image</div>
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="3" ry="3"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="m21 15-5-5-5 5-2-2-6 6"/>
+                  </svg>
+                  <span>Drop my image here later</span>
+                </div>
+              </ng-template>
+            </div>
             <div class="timeline-header">
               <div class="timeline-icon" [ngClass]="'icon-' + item.type">
                 <!-- Work Icon -->

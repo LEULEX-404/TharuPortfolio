@@ -8,6 +8,7 @@ interface Skill {
   icon: string;
   color: string;
   experience: string;
+  badgeUrl?: string;
 }
 
 interface Certification {
@@ -39,9 +40,32 @@ interface Category {
 })
 export class Skills implements OnInit, AfterViewInit {
   selectedCategory = 'all';
+  filteredSkills: Skill[] = [];
+  private revealObserver?: IntersectionObserver;
+
+  private readonly badgeSpecs: Record<string, { icon: string; colorOverride?: string; customUrl?: string }> = {
+    angular: { icon: 'angular' },
+    react: { icon: 'react' },
+    typescript: { icon: 'typescript' },
+    javascript: { icon: 'javascript' },
+    html: { icon: 'html5' },
+    tailwind: { icon: 'tailwindcss' },
+    nodejs: { icon: 'nodedotjs' },
+    express: { icon: 'express', colorOverride: 'FFFFFF' },
+    api: { icon: 'swagger' },
+    mongodb: { icon: 'mongodb' },
+    mysql: { icon: 'mysql' },
+    git: { icon: 'git' },
+    aws: {
+      icon: 'amazonaws',
+      customUrl: 'https://api.iconify.design/logos/aws.svg'
+    },
+    docker: { icon: 'docker' },
+    kubernetes: { icon: 'kubernetes' }
+  };
 
   dashboardStats: DashboardStat[] = [
-    { value: '1+', label: 'Years Experience', icon: 'clock' },
+    { value: '2+', label: 'Years Experience', icon: 'clock' },
     { value: '5+', label: 'Projects Completed', icon: 'briefcase' },
     { value: '8+', label: 'Technologies Mastered', icon: 'layers' },
     { value: '4', label: 'Certifications', icon: 'award' }
@@ -75,7 +99,10 @@ export class Skills implements OnInit, AfterViewInit {
     
     // DevOps
     { name: 'Git', level: 93, category: 'devops', icon: 'git', color: '#F05032', experience: '1 year' },
-    { name: 'AWS', level: 78, category: 'devops', icon: 'aws', color: '#FF9900', experience: '1 year' }
+    { name: 'AWS', level: 78, category: 'devops', icon: 'aws', color: '#FF9900', experience: '1 year' },
+    { name: 'Docker', level: 88, category: 'devops', icon: 'docker', color: '#2496ED', experience: '1 year' },
+    { name: 'Kubernetes', level: 84, category: 'devops', icon: 'kubernetes', color: '#326CE5', experience: '1 year' }
+
   ];
 
   certifications: Certification[] = [
@@ -129,7 +156,12 @@ export class Skills implements OnInit, AfterViewInit {
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit() {
+    this.skills = this.skills.map(skill => ({
+      ...skill,
+      badgeUrl: this.buildBadgeUrl(skill)
+    }));
     this.updateCategoryCounts();
+    this.updateFilteredSkills();
   }
 
   ngAfterViewInit() {
@@ -150,15 +182,17 @@ export class Skills implements OnInit, AfterViewInit {
     });
   }
 
-  get filteredSkills(): Skill[] {
-    if (this.selectedCategory === 'all') {
-      return this.skills;
-    }
-    return this.skills.filter(skill => skill.category === this.selectedCategory);
-  }
-
   selectCategory(categoryId: string) {
     this.selectedCategory = categoryId;
+    this.updateFilteredSkills();
+
+    if (typeof window !== 'undefined') {
+      setTimeout(() => this.refreshSkillReveal(), 0);
+    }
+  }
+
+  trackBySkill(_index: number, skill: Skill): string {
+    return skill.name;
   }
 
   getLevelLabel(level: number): string {
@@ -226,17 +260,18 @@ export class Skills implements OnInit, AfterViewInit {
     if (typeof IntersectionObserver === 'undefined') {
       // Fallback: just add animate-in class immediately
       const elements = this.elementRef.nativeElement.querySelectorAll(
-        '.skill-card, .cert-card, .expertise-tag'
+        '.page-header, .dashboard-stats, .category-filter-section, .certifications-section, .skill-card, .cert-card, .expertise-tag'
       );
       elements.forEach((el: Element) => el.classList.add('animate-in'));
       return;
     }
 
-    const observer = new IntersectionObserver(
+    this.revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-in');
+            this.revealObserver?.unobserve(entry.target);
           }
         });
       },
@@ -246,17 +281,61 @@ export class Skills implements OnInit, AfterViewInit {
       }
     );
 
-    // Observe skill cards
-    const skillCards = this.elementRef.nativeElement.querySelectorAll('.skill-card');
-    skillCards.forEach((card: Element) => observer.observe(card));
+    this.observeRevealTargets();
+  }
 
-    // Observe cert cards
-    const certCards = this.elementRef.nativeElement.querySelectorAll('.cert-card');
-    certCards.forEach((card: Element) => observer.observe(card));
+  private observeRevealTargets() {
+    if (!this.revealObserver) {
+      return;
+    }
 
-    // Observe expertise tags
-    const tags = this.elementRef.nativeElement.querySelectorAll('.expertise-tag');
-    tags.forEach((tag: Element) => observer.observe(tag));
+    const root = this.elementRef.nativeElement as HTMLElement;
+
+    const sectionWrappers = root.querySelectorAll(
+      '.page-header, .dashboard-stats, .category-filter-section, .certifications-section'
+    );
+    sectionWrappers.forEach((section: Element, index: number) => {
+      (section as HTMLElement).style.setProperty('--reveal-delay', `${index * 0.12}s`);
+      this.revealObserver?.observe(section);
+    });
+
+    root.querySelectorAll('.skill-card, .cert-card, .expertise-tag').forEach((element: Element) => {
+      this.revealObserver?.observe(element);
+    });
+  }
+
+  private updateFilteredSkills() {
+    this.filteredSkills = this.selectedCategory === 'all'
+      ? [...this.skills]
+      : this.skills.filter(skill => skill.category === this.selectedCategory);
+  }
+
+  private refreshSkillReveal() {
+    const root = this.elementRef.nativeElement as HTMLElement;
+    const cards = root.querySelectorAll('.skill-card');
+
+    if (typeof IntersectionObserver === 'undefined' || !this.revealObserver) {
+      cards.forEach((card: Element) => card.classList.add('animate-in'));
+      return;
+    }
+
+    cards.forEach((card: Element, index: number) => {
+      const element = card as HTMLElement;
+      element.classList.remove('animate-in');
+      element.style.setProperty('--reveal-delay', `${index * 0.05}s`);
+      this.revealObserver?.observe(element);
+    });
+  }
+
+  private buildBadgeUrl(skill: Skill): string {
+    const spec = this.badgeSpecs[skill.icon];
+    if (spec?.customUrl) {
+      return spec.customUrl;
+    }
+    const icon = spec?.icon ?? 'simpleicons';
+    const iconColor = (spec?.colorOverride ?? skill.color).replace('#', '').toLowerCase();
+
+    return `https://cdn.simpleicons.org/${encodeURIComponent(icon)}/${encodeURIComponent(iconColor)}`;
   }
 
   downloadResume() {
@@ -265,8 +344,8 @@ export class Skills implements OnInit, AfterViewInit {
     
     // Example implementation:
     const link = document.createElement('a');
-    link.href = 'assets/resume/tharuka-miyuru-resume.pdf';
-    link.download = 'Tharuka-Miyuru-Resume.pdf';
+    link.href = 'CV/Tharuka(CV).pdf';
+    link.download = 'Tharuka-CV.pdf';
     link.click();
   }
 }

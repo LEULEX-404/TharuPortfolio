@@ -1,38 +1,89 @@
 <section id="contact" class="contact-section">
+  <div class="contact-bg">
+    <div class="contact-orb orb-left"></div>
+    <div class="contact-orb orb-right"></div>
+    <div class="contact-ring ring-1"></div>
+    <div class="contact-ring ring-2"></div>
+    <div class="contact-noise"></div>
+  </div>
 
-    <div class="section-header">
-      <h2 class="section-title">
-        <span class="bracket">[</span> Contact Me <span class="bracket">]</span>
-      </h2>
-      <div class="header-underline"></div>
-    </div>
-  
-    <!-- Contact Cards -->
-    <div class="contacts-grid">
-      <div class="contact-card" *ngFor="let contact of contacts" #animateCard>
-        <div class="contact-icon">{{ contact.icon }}</div>
-        <h3>{{ contact.title }}</h3>
-        <p>{{ contact.description }}</p>
-        <a [href]="contact.link" target="_blank" class="btn-neon secondary">
-          <span>{{ contact.action }}</span>
-          <span class="btn-glow"></span>
-        </a>
+  <div class="contact-shell">
+    <header class="contact-hero" #animateCard>
+      <span class="hero-pill">Contact</span>
+      <h2 class="hero-title">Let us craft something bold, modern, and impossible to ignore.</h2>
+      <p class="hero-copy">
+        Share the vision, timeline, and requirements. I will reply with a focused plan, the best tech stack, and a next step.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-card">
+          <span class="meta-label">Response</span>
+          <span class="meta-value">24-48h</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">Focus</span>
+          <span class="meta-value">Frontend + Full Stack</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="contact-grid">
+      <div class="contact-panel" #animateCard>
+        <div class="panel-header">
+          <div>
+            <h3>Direct Channels</h3>
+            <p>Pick a channel and I will follow up quickly.</p>
+          </div>
+          <span class="panel-badge">Available</span>
+        </div>
+
+        <div class="contacts-grid">
+          <div class="contact-card" *ngFor="let contact of contacts" #animateCard>
+            <div class="card-icon">
+              <span class="icon-core">{{ contact.icon }}</span>
+            </div>
+            <div class="card-info">
+              <h4>{{ contact.title }}</h4>
+              <p>{{ contact.description }}</p>
+            </div>
+            <a [href]="contact.link" target="_blank" class="contact-link">
+              <span>{{ contact.action }}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form" #animateCard>
+        <div class="form-header">
+          <h3>Send a message</h3>
+          <p>Tell me about the project, goals, and timeline.</p>
+        </div>
+        <form (submit)="sendMessage($event)">
+          <label class="field">
+            <span>Your Name</span>
+            <input type="text" placeholder="Tharuka Miyuru" required>
+          </label>
+          <label class="field">
+            <span>Your Email</span>
+            <input type="email" placeholder="name@email.com" required>
+          </label>
+          <label class="field full">
+            <span>Project Brief</span>
+            <textarea rows="5" placeholder="Share the scope, budget, or launch target" required></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn-neon primary">
+              <span>Send Message</span>
+              <span class="btn-glow"></span>
+            </button>
+            <span class="form-note">Prefer a call? Mention a time window.</span>
+          </div>
+        </form>
       </div>
     </div>
-  
-    <!-- Contact Form -->
-    <div class="contact-form-wrapper" #animateCard>
-      <h3>Send me a message</h3>
-      <form (submit)="sendMessage($event)">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn-neon primary">
-          <span>Send Message</span>
-          <span class="btn-glow"></span>
-        </button>
-      </form>
-    </div>
-  
-  </section>
+  </div>
+</section>
   

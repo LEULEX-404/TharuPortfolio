@@ -19,6 +19,11 @@ export class Contact implements AfterViewInit {
   @ViewChildren('animateCard') animateCards!: QueryList<ElementRef>;
 
   ngAfterViewInit(): void {
+    if (typeof IntersectionObserver === 'undefined') {
+      this.animateCards.forEach((card) => card.nativeElement.classList.add('animate-in'));
+      return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

@@ -1,15 +1,16 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
-export class Home implements OnInit, OnDestroy {
+export class Home implements OnInit, AfterViewInit, OnDestroy {
+  profileImage = '/images/Profile-removedBG.png';
+
   currentRole = '';
   roles = [
     'Full Stack Developer',
@@ -25,23 +26,62 @@ export class Home implements OnInit, OnDestroy {
   mouseX = 0;
   mouseY = 0;
 
+  private homeRevealObserver: IntersectionObserver | null = null;
+  private scrollRevealEnabled = false;
+
   stats = [
     { value: '5+', label: 'Projects Completed', icon: 'briefcase' },
-    { value: '1+', label: 'Years Experience', icon: 'clock' },
+    { value: '2+', label: 'Years Experience', icon: 'clock' },
     { value: '10+', label: 'Happy Clients', icon: 'users' },
     { value: '100%', label: 'Client Satisfaction', icon: 'heart' }
   ];
 
   technologies = [
-    { name: 'Angular', color: 'linear-gradient(135deg, #dd0031, #c3002f)' },
-    { name: 'React', color: 'linear-gradient(135deg, #61dafb, #21a1c4)' },
-    { name: 'Node.js', color: 'linear-gradient(135deg, #339933, #66cc66)' },
-    { name: 'TypeScript', color: 'linear-gradient(135deg, #3178c6, #235a97)' },
-    { name: 'MongoDB', color: 'linear-gradient(135deg, #47a248, #00ed64)' },
-    { name: 'AWS', color: 'linear-gradient(135deg, #ff9900, #ec7211)' }
+    {
+      name: 'Angular',
+      icon: 'angular',
+      glow: 'linear-gradient(135deg, rgba(221, 0, 49, 0.22), rgba(196, 0, 47, 0.14))',
+      iconBg: 'rgba(221, 0, 49, 0.12)',
+      iconColor: '#dd0031'
+    },
+    {
+      name: 'React',
+      icon: 'react',
+      glow: 'linear-gradient(135deg, rgba(97, 218, 251, 0.22), rgba(33, 161, 196, 0.14))',
+      iconBg: 'rgba(97, 218, 251, 0.12)',
+      iconColor: '#61dafb'
+    },
+    {
+      name: 'Node.js',
+      icon: 'node',
+      glow: 'linear-gradient(135deg, rgba(51, 153, 51, 0.22), rgba(102, 204, 102, 0.14))',
+      iconBg: 'rgba(51, 153, 51, 0.12)',
+      iconColor: '#339933'
+    },
+    {
+      name: 'TypeScript',
+      icon: 'typescript',
+      glow: 'linear-gradient(135deg, rgba(49, 120, 198, 0.22), rgba(35, 90, 151, 0.14))',
+      iconBg: 'rgba(49, 120, 198, 0.12)',
+      iconColor: '#3178c6'
+    },
+    {
+      name: 'MongoDB',
+      icon: 'mongodb',
+      glow: 'linear-gradient(135deg, rgba(71, 162, 72, 0.22), rgba(0, 237, 100, 0.14))',
+      iconBg: 'rgba(71, 162, 72, 0.12)',
+      iconColor: '#47a248'
+    },
+    {
+      name: 'AWS',
+      icon: 'aws',
+      glow: 'linear-gradient(135deg, rgba(255, 153, 0, 0.22), rgba(236, 114, 17, 0.14))',
+      iconBg: 'rgba(255, 153, 0, 0.12)',
+      iconColor: '#ff9900'
+    }
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef) {}
 
   ngOnInit() {
     this.initMouseTracking();
@@ -49,10 +89,64 @@ export class Home implements OnInit, OnDestroy {
     this.typeWriter();
   }
 
+  ngAfterViewInit() {
+    this.enableScrollRevealIfNeeded();
+  }
+
   ngOnDestroy() {
     if (this.typeInterval) {
       clearInterval(this.typeInterval);
     }
+
+    this.homeRevealObserver?.disconnect();
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    this.enableScrollRevealIfNeeded();
+  }
+
+  private enableScrollRevealIfNeeded() {
+    if (this.scrollRevealEnabled || typeof window === 'undefined') {
+      return;
+    }
+
+    if (window.scrollY <= 8) {
+      return;
+    }
+
+    this.scrollRevealEnabled = true;
+    this.initHomeRevealObserver();
+  }
+
+  private initHomeRevealObserver() {
+    const elements = this.elementRef.nativeElement.querySelectorAll('.home-reveal');
+
+    if (!elements.length) {
+      return;
+    }
+
+    if (typeof IntersectionObserver === 'undefined') {
+      elements.forEach((element: Element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    this.homeRevealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    );
+
+    elements.forEach((element: Element) => this.homeRevealObserver?.observe(element));
   }
 
   typeWriter() {
@@ -114,29 +208,34 @@ export class Home implements OnInit, OnDestroy {
   downloadCV() {
     console.log('Downloading CV...');
     const link = document.createElement('a');
-    link.href = 'assets/cv/tharuka-cv.pdf';
-    link.download = 'Tharuka-Miyuru-CV.pdf';
+    link.href = 'CV/Tharuka(CV).pdf';
+    link.download = 'Tharuka-CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   }
 
+  scrollToSection(sectionId: string) {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   scrollToContact() {
-    window.scrollTo({ 
-      top: document.body.scrollHeight, 
-      behavior: 'smooth' 
-    });
+    this.scrollToSection('contact');
   }
 
   navigateToProjects() {
-    // Router navigation will be handled by routerLink
+    // In-page section navigation is handled in the template.
   }
 
   navigateToAbout() {
-    // Router navigation will be handled by routerLink
+    // In-page section navigation is handled in the template.
   }
 
   navigateToSkills() {
-    // Router navigation will be handled by routerLink
+    // In-page section navigation is handled in the template.
   }
 }

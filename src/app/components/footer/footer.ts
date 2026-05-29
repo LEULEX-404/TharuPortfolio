@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 interface Particle {
   x: number;
@@ -30,7 +29,7 @@ interface QuickLink {
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './footer.html',
   styleUrls: ['./footer.css']
 })
@@ -51,22 +50,23 @@ export class Footer implements OnInit {
   // Stats
   stats = {
     projects: 5,
-    experience: 1,
+    experience: 2,
     clients: 10
   };
 
   quickLinks: QuickLink[] = [
-    { label: 'Home', path: '/home' },
-    { label: 'About', path: '/about' },
-    { label: 'Skills', path: '/skills' },
-    { label: 'Projects', path: '/projects' }
+    { label: 'Home', path: 'home' },
+    { label: 'About', path: 'about' },
+    { label: 'Skills', path: 'skills' },
+    { label: 'Projects', path: 'projects' },
+    { label: 'Contact', path: 'contact' }
   ];
 
   services: string[] = [
-    'Web Development',
-    'Mobile Apps',
-    'UI/UX Design',
-    'Consulting'
+    'Frontend Engineering',
+    'Full Stack Apps',
+    'API Integration',
+    'Design Systems'
   ];
 
   socialLinks: SocialLink[] = [

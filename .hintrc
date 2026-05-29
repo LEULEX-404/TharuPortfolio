@@ -26,6 +26,7 @@
     "no-inline-styles": "off",
     "detect-css-reflows/composite": "off",
     "detect-css-reflows/paint": "off",
-    "button-type": "off"
+    "button-type": "off",
+    "typescript-config/is-valid": "off"
   }
 }

@@ -23,6 +23,16 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/CV",
+                "output": "CV"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/images",
+                "output": "images"
               }
             ],
             "styles": [

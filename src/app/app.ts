@@ -1,17 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Home } from './components/home/home';
+import { About } from './components/about/about';
+import { Skills } from './components/skills/skills';
+import { Projects } from './components/projects/projects';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Header, Footer],
+  imports: [Header, Home, About, Skills, Projects, Footer],
   template: `
     <div class="app-wrapper">
       <app-header></app-header>
       <main class="main-content">
-        <router-outlet></router-outlet>
+        <app-home></app-home>
+        <app-about></app-about>
+        <app-skills></app-skills>
+        <app-projects></app-projects>
       </main>
       <app-footer></app-footer>
     </div>
