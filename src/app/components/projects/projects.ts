@@ -302,6 +302,67 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
         'User profile management',
         'Health goal tracking'
       ]
+    },
+    {
+      id: 6,
+      title: 'PulseNova Health Tracker & Wellness Platform',
+      shortDescription: 'A modern health tracking system with AI-driven meal planning, simulated wearable data, and comprehensive wellness analytics.',
+      fullDescription: 'The AI-Powered Health Tracker & Wellness Platform is a full-stack health management system designed to help users monitor, analyze, and improve their lifestyle habits. It supports manual health data entry, PDF-based health report extraction, and a smart simulator that mimics wearable device data (e.g., Fitbit-like tracking) for testing and development purposes. The system also includes an AI-powered nutrition analyzer, personalized meal suggestions, reminder system, and advanced weekly/monthly health reporting dashboards for continuous wellness monitoring.',
+    
+      category: 'web',
+      technologies: ['MERN Stack', 'React', 'Node.js', 'Express.js', 'MongoDB', 'OpenAI API', 'CSS'],
+    
+      image: 'Projects/6.png',
+    
+      screenshots: [
+        'Projects/6.1.png',
+        'Projects/6.2.png',
+        'Projects/6.3.png',
+        'Projects/6.4.png',
+      ],
+    
+      featured: true,
+    
+      liveUrl: 'https://healthhracker.vercel.app/',
+      githubUrl: 'https://github.com/LEULEX-404/Health_Tracker',
+    
+      completedDate: 'May 2026',
+      duration: '3–5 months',
+      team: '4 contributors',
+      role: 'Full Stack Developer & AI Integration',
+    
+      metrics: {
+        users: 'Demo Users / Testing Phase',
+        performance: '95+ Lighthouse Score',
+        rating: '4.8/5.0 (simulated feedback)',
+        impact: 'Improved health tracking efficiency by 60%'
+      },
+    
+      challenges: [
+        'Integrating simulated wearable data for realistic testing',
+        'Processing and extracting structured data from PDF health reports',
+        'Generating accurate AI-based nutrition and meal recommendations',
+        'Designing a unified dashboard for multiple health data sources'
+      ],
+    
+      solutions: [
+        'Built a custom health data simulator to emulate wearable device streams',
+        'Implemented PDF parsing pipeline for structured health data extraction',
+        'Integrated AI model for nutrition analysis and meal generation',
+        'Designed modular dashboard architecture with real-time analytics panels'
+      ],
+    
+      features: [
+        'Manual health data entry (weight, calories, sleep, activity)',
+        'PDF health report upload & extraction',
+        'Wearable data simulator (Fitbit-like mock data generator)',
+        'AI-powered nutrition analyzer',
+        'Personalized AI meal recommendations',
+        'Smart reminders for hydration, meals, and workouts',
+        'Weekly & monthly health analytics reports',
+        'Modern responsive dashboard UI',
+        'Data visualization for trends and progress'
+      ]
     }
   ];
 
@@ -326,6 +387,23 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
   selectCategory(categoryId: string) {
     this.selectedCategory = categoryId;
+    if (typeof window !== 'undefined') {
+      setTimeout(() => this.refreshProjectReveal(), 0);
+    }
+  }
+
+  private refreshProjectReveal() {
+    const root = this.elementRef.nativeElement as HTMLElement;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      root.querySelectorAll('.project-card')
+        .forEach((element: Element) => element.classList.add('animate-in'));
+      return;
+    }
+
+    this.revealObserver?.disconnect();
+    this.revealObserver = undefined;
+    this.initScrollAnimations();
   }
 
   private initScrollAnimations() {
