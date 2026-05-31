@@ -12,7 +12,7 @@ export class Contact implements AfterViewInit {
 
   contacts = [
     { title: 'Email', description: 'Reach me via email', icon: '✉️', action: 'Send Email', link: 'mailto:tharuka@example.com' },
-    { title: 'LinkedIn', description: 'Connect professionally', icon: '💼', action: 'Visit LinkedIn', link: 'https://www.linkedin.com/in/tharuka' },
+    { title: 'LinkedIn', description: 'Connect professionally', icon: '💼', action: 'Visit LinkedIn', link: 'https://www.linkedin.com/in/miyuru-tharuka-18a9b6412' },
     { title: 'GitHub', description: 'Check my repos', icon: '🐙', action: 'Visit GitHub', link: 'https://github.com/tharuka' }
   ];
 

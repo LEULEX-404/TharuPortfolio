@@ -78,7 +78,7 @@ export class Footer implements OnInit {
     },
     { 
       name: 'LinkedIn', 
-      url: 'https://www.linkedin.com/in/miyuru-tharuka-1b769a376', 
+      url: 'https://www.linkedin.com/in/miyuru-tharuka-18a9b6412', 
       icon: 'linkedin',
       color: '#0077b5'
     },
