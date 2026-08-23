@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,58 +8,56 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class Header implements OnInit, OnDestroy {
+export class Header implements OnDestroy {
   isScrolled = false;
   isMobileMenuOpen = false;
   activeSection = 'home';
-  theme: 'light' | 'dark' = 'dark';
-  mouseX = 0;
-  mouseY = 0;
-  private animationFrame: number | null = null;
+  scrollProgress = 0;
+
+  private readonly sectionIds = ['home', 'projects', 'skills', 'about', 'contact'];
 
   menuItems = [
-    { label: 'Home', section: 'home', icon: 'home' },
-    { label: 'About', section: 'about', icon: 'user' },
-    { label: 'Skills', section: 'skills', icon: 'code' },
-    { label: 'Projects', section: 'projects', icon: 'briefcase' },
-    { label: 'Contact', section: 'contact', icon: 'mail' }
+    { label: '/home', section: 'home' },
+    { label: '/work', section: 'projects' },
+    { label: '/skills', section: 'skills' },
+    { label: '/experience', section: 'about' },
+    { label: '/contact', section: 'contact' }
   ];
 
-  ngOnInit() {
-    // Only run browser-specific code
-    if (typeof window !== 'undefined') {
-      // Apply saved theme
-      const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-      if (savedTheme) {
-        this.theme = savedTheme;
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      }
-    }
-  }
-
   ngOnDestroy() {
-    if (this.animationFrame) {
-      cancelAnimationFrame(this.animationFrame);
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = '';
     }
   }
 
   @HostListener('window:scroll')
   onWindowScroll() {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    this.isScrolled = scrollPosition > 50;
-  }
+    this.isScrolled = scrollPosition > 12;
 
-  @HostListener('window:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
-    if (typeof window === 'undefined' || !('requestAnimationFrame' in window)) return;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollProgress = docHeight > 0 ? Math.min(100, (scrollPosition / docHeight) * 100) : 0;
 
-    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
+    const marker = scrollPosition + window.innerHeight * 0.35;
 
-    this.animationFrame = requestAnimationFrame(() => {
-      this.mouseX = event.clientX;
-      this.mouseY = event.clientY;
-    });
+    for (const sectionId of this.sectionIds) {
+      const element = document.getElementById(sectionId);
+      if (!element) {
+        continue;
+      }
+
+      const top = element.offsetTop;
+      const bottom = top + element.offsetHeight;
+
+      if (marker >= top && marker < bottom) {
+        this.activeSection = sectionId;
+        return;
+      }
+    }
   }
 
   toggleMobileMenu() {
@@ -75,7 +73,6 @@ export class Header implements OnInit, OnDestroy {
     }
 
     this.isMobileMenuOpen = false;
-
     if (typeof document !== 'undefined') {
       document.body.style.overflow = '';
     }
@@ -90,15 +87,7 @@ export class Header implements OnInit, OnDestroy {
 
     this.closeMobileMenu();
     this.activeSection = sectionId;
-
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  toggleTheme() {
-    if (typeof window === 'undefined') return;
-    this.theme = this.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', this.theme);
-    localStorage.setItem('theme', this.theme);
   }
 
   @HostListener('document:keydown', ['$event'])
@@ -107,12 +96,11 @@ export class Header implements OnInit, OnDestroy {
 
     if (event.ctrlKey || event.metaKey) {
       const key = event.key.toLowerCase();
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       const index = parseInt(key) - 1;
 
-      if (index >= 0 && index < sections.length) {
+      if (index >= 0 && index < this.sectionIds.length) {
         event.preventDefault();
-        this.scrollToSection(sections[index]);
+        this.scrollToSection(this.sectionIds[index]);
       }
     }
 
@@ -126,39 +114,10 @@ export class Header implements OnInit, OnDestroy {
     if (typeof document === 'undefined') return;
 
     const target = event.target as HTMLElement;
-    const header = document.querySelector('.header');
+    const header = document.querySelector('.site-nav');
 
     if (this.isMobileMenuOpen && header && !header.contains(target)) {
       this.closeMobileMenu();
-    }
-  }
-
-  @HostListener('window:scroll')
-  onSectionScroll() {
-    if (typeof window === 'undefined' || typeof document === 'undefined') {
-      return;
-    }
-
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    this.isScrolled = scrollPosition > 50;
-
-    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-    const marker = scrollPosition + window.innerHeight * 0.35;
-
-    for (const sectionId of sections) {
-      const element = document.getElementById(sectionId);
-
-      if (!element) {
-        continue;
-      }
-
-      const top = element.offsetTop;
-      const bottom = top + element.offsetHeight;
-
-      if (marker >= top && marker < bottom) {
-        this.activeSection = sectionId;
-        return;
-      }
     }
   }
 }

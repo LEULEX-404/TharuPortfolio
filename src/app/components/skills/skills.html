@@ -1,297 +1,42 @@
-<section id="skills" class="skills-section page-transition">
+<section id="skills" class="skills-section">
   <div class="container">
-    <!-- Animated Page Header -->
-    <div class="page-header">
-      <div class="header-decoration">
-        <div class="decoration-line"></div>
-        <div class="header-icon-large">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-            <polyline points="2 17 12 22 22 17"/>
-            <polyline points="2 12 12 17 22 12"/>
-          </svg>
-          <div class="icon-pulse"></div>
-        </div>
-        <div class="decoration-line"></div>
+    <div class="section-head">
+      <div class="head-text">
+        <span class="eyebrow">// skills &amp; stack</span>
+        <h2>Skills &amp; <span class="outline">stack</span></h2>
       </div>
-      <h1 class="heading-lg gradient-text">My Skills & Expertise</h1>
-      <p class="page-subtitle">A comprehensive showcase of my technical abilities and professional certifications</p>
-    </div>
-
-    <!-- Dashboard Stats with Particle Effects -->
-    <div class="dashboard-stats">
-      <div class="stat-card glass-card" *ngFor="let stat of dashboardStats; let i = index"
-           [style.animation-delay.s]="i * 0.1">
-        <div class="card-particles"></div>
-        <div class="stat-icon-wrapper">
-          <div class="stat-icon">
-            <!-- Clock/Experience -->
-            <svg *ngIf="stat.icon === 'clock'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-            <!-- Briefcase/Projects -->
-            <svg *ngIf="stat.icon === 'briefcase'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-            </svg>
-            <!-- Layers/Technologies -->
-            <svg *ngIf="stat.icon === 'layers'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-              <polyline points="2 17 12 22 22 17"/>
-              <polyline points="2 12 12 17 22 12"/>
-            </svg>
-            <!-- Award/Certifications -->
-            <svg *ngIf="stat.icon === 'award'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="7"/>
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
-            </svg>
-          </div>
-          <div class="icon-glow"></div>
-        </div>
-        <div class="stat-content">
-          <h3 class="stat-value gradient-text" [attr.data-value]="stat.value">0</h3>
-          <p class="stat-label">{{ stat.label }}</p>
-        </div>
+      <div class="head-side">
+        <span class="section-deco" aria-hidden="true"><span class="deco-dot"></span></span>
+        <p>Frontend to deployment — the tools I reach for on every build.</p>
       </div>
     </div>
 
-    <!-- Enhanced Category Filter -->
-    <div class="category-filter-section">
-      <div class="filter-header">
-        <h3 class="filter-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-          </svg>
-          Filter by Category
-        </h3>
-        <span class="filter-count-badge">{{ filteredSkills.length }} Skills</span>
-      </div>
-      <div class="category-filters">
-        <button 
-          *ngFor="let category of categories; let i = index"
-          class="filter-btn glass-card"
-          [class.active]="selectedCategory === category.id"
-          [style.animation-delay.s]="i * 0.05"
-          (click)="selectCategory(category.id)">
-          <div class="filter-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="16 18 22 12 16 6"/>
-              <polyline points="8 6 2 12 8 18"/>
-            </svg>
-          </div>
-          <span class="filter-name">{{ category.name }}</span>
-          <span class="filter-count">{{ category.count }}</span>
-          <div class="filter-shine"></div>
-        </button>
-      </div>
-    </div>
-
-    <!-- Skills Grid with Advanced Cards -->
     <div class="skills-grid">
-      <div 
-        class="skill-card glass-card card-interactive"
-        *ngFor="let skill of filteredSkills; let i = index; trackBy: trackBySkill"
-        [style.animation-delay.s]="i * 0.05"
-        (mouseenter)="onSkillHover($event)"
-        (mousemove)="onSkillMove($event)"
-        (mouseleave)="onSkillLeave($event)">
-        
-        <div class="card-background-effect"></div>
-        <div class="card-shine-effect"></div>
-        
-        <div class="skill-header">
-          <div class="skill-icon-container">
-            <div class="skill-icon" 
-                 [style.background]="'linear-gradient(135deg, ' + skill.color + '20, ' + skill.color + '10)'"
-                 [style.border-color]="skill.color + '40'">
-              <div class="skill-badge" [style.color]="skill.color">
-                <img class="skill-badge-image" [src]="skill.badgeUrl" [alt]="skill.name + ' badge'" loading="lazy">
-              </div>
-              <div class="icon-glow-effect" [style.background]="skill.color"></div>
-            </div>
-            <div class="level-badge" [style.background]="skill.color + '20'" [style.color]="skill.color">
-              {{ getLevelLabel(skill.level) }}
-            </div>
-          </div>
+      <div class="skill-col" *ngFor="let column of skillColumns">
+        <h4>{{ column.name }}</h4>
+        <div class="skill-row" *ngFor="let skill of column.skills">
           <div class="skill-info">
-            <h4 class="skill-name">{{ skill.name }}</h4>
-            <span class="skill-experience">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
+            <span class="skill-logo">
+              <img *ngIf="skill.logo" [src]="logoUrl(skill.logo)" [alt]="skill.name" loading="lazy">
+              <svg *ngIf="!skill.logo" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 5 3 12l5 7M16 5l5 7-5 7M13 4l-2 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              {{ skill.experience }}
             </span>
+            <span class="skill-name">{{ skill.name }}</span>
           </div>
-        </div>
-
-        <!-- Dual Progress Display -->
-        <div class="skill-progress-wrapper">
-          <!-- Linear Progress -->
-          <div class="skill-progress-section">
-            <div class="progress-header">
-              <span class="progress-label">Proficiency Level</span>
-              <span class="progress-value gradient-text">{{ skill.level }}%</span>
-            </div>
-            <div class="progress-bar-container">
-              <div 
-                class="progress-bar-fill" 
-                [style.width.%]="skill.level"
-                [style.background]="'linear-gradient(90deg, ' + skill.color + ', ' + skill.color + 'DD)'"
-                [style.box-shadow]="'0 0 20px ' + skill.color + '80'">
-                <div class="progress-shine"></div>
-                <div class="progress-dots">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Circular Progress -->
-          <div class="circular-progress">
-            <svg class="progress-ring" width="90" height="90" viewBox="0 0 90 90">
-              <defs>
-                <linearGradient [id]="'gradient-' + i" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" [attr.stop-color]="skill.color"/>
-                  <stop offset="100%" [attr.stop-color]="skill.color + 'AA'"/>
-                </linearGradient>
-              </defs>
-              <circle
-                class="progress-ring-circle-bg"
-                stroke="rgba(0, 212, 255, 0.1)"
-                stroke-width="8"
-                fill="transparent"
-                r="38"
-                cx="45"
-                cy="45"/>
-              <circle
-                class="progress-ring-circle"
-                [attr.stroke]="'url(#gradient-' + i + ')'"
-                stroke-width="8"
-                fill="transparent"
-                r="38"
-                cx="45"
-                cy="45"
-                [style.stroke-dasharray]="238.76"
-                [style.stroke-dashoffset]="238.76 - (238.76 * skill.level / 100)"/>
-            </svg>
-            <div class="progress-ring-content">
-              <span class="progress-percentage" [style.color]="skill.color">{{ skill.level }}</span>
-              <span class="progress-symbol">%</span>
-            </div>
-          </div>
+          <div class="bar"><i [style.width.%]="skill.level"></i></div>
         </div>
       </div>
     </div>
 
-    <!-- Certifications Section with Timeline Effect -->
-    <div class="certifications-section">
-      <div class="section-header-inline">
-        <div class="section-header-content">
-          <h2 class="section-title gradient-text">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="7"/>
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
-            </svg>
-            Certifications & Achievements
-          </h2>
-          <p class="section-description">Professional certifications that validate my expertise</p>
-        </div>
-        <button class="btn btn-primary btn-download" (click)="downloadResume()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          <span>Download Resume</span>
-        </button>
-      </div>
-
-      <div class="certifications-grid">
-        <div class="cert-card glass-card card-interactive" 
-             *ngFor="let cert of certifications; let i = index"
-             [style.animation-delay.s]="i * 0.1">
-          <div class="cert-shine"></div>
-          <div class="cert-badge-wrapper">
-            <div class="cert-badge">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="8" r="7"/>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
-              </svg>
-              <div class="badge-glow"></div>
-            </div>
-            <div class="cert-ribbon"></div>
-          </div>
-          <div class="cert-content">
-            <h4 class="cert-title">{{ cert.title }}</h4>
-            <p class="cert-issuer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-              {{ cert.issuer }}
-            </p>
-            <span class="cert-date">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-              {{ cert.date }}
-            </span>
-          </div>
-          <a [href]="cert.credentialUrl" class="cert-link" target="_blank" rel="noopener">
-            <span>View Credential</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
-          </a>
-        </div>
+    <div class="cert-row">
+      <div class="cert-item" *ngFor="let cert of certifications">
+        <b>{{ cert.title }}</b>{{ cert.issuer }} — {{ cert.date }}
       </div>
     </div>
 
-    <!-- Enhanced Expertise Section -->
-    <div class="expertise-section glass-card">
-      <div class="section-glow"></div>
-      <div class="expertise-header">
-        <h3 class="expertise-title">
-          <div class="title-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 20h9"/>
-              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-            </svg>
-          </div>
-          Additional Expertise & Methodologies
-        </h3>
-        <p class="expertise-subtitle">Professional practices and development methodologies I follow</p>
-      </div>
-      <div class="expertise-tags">
-        <span class="expertise-tag clay-card" *ngFor="let tag of expertiseTags; let i = index"
-              [style.animation-delay.s]="i * 0.02">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          {{ tag }}
-        </span>
-      </div>
+    <div class="resume-cta">
+      <button class="btn btn-outline" (click)="downloadResume()">Download full resume ↓</button>
     </div>
   </div>
-
-  <!-- Floating Background Elements -->
-  <div class="bg-effects">
-    <div class="bg-gradient-orb orb-1"></div>
-    <div class="bg-gradient-orb orb-2"></div>
-    <div class="bg-gradient-orb orb-3"></div>
-    <div class="bg-lines">
-      <div class="line" *ngFor="let line of [1,2,3,4,5]"></div>
-    </div>
-  </div>
-
-  <!-- Animated Grid Background -->
-  <div class="grid-background"></div>
 </section>

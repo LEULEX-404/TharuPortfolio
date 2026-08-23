@@ -15,9 +15,9 @@ import { Footer } from './components/footer/footer';
       <app-header></app-header>
       <main class="main-content">
         <app-home></app-home>
-        <app-about></app-about>
-        <app-skills></app-skills>
         <app-projects></app-projects>
+        <app-skills></app-skills>
+        <app-about></app-about>
       </main>
       <app-footer></app-footer>
     </div>

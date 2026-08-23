@@ -1,239 +1,113 @@
-<section id="home" class="home-section">
+<section id="home" class="hero">
+  <div class="hero-bg home-reveal" [style.--enter-delay]="'0.1s'">
+    <img class="hero-image" [src]="profileImage" alt="Portrait of Tharuka Sanjeewa" loading="eager">
+    <span class="tag">// developer.build()</span>
+  </div>
+
+  <div class="hero-tech-doodles" aria-hidden="true">
+    <svg class="tech-doodle doodle-code" viewBox="0 0 100 70" fill="none">
+      <path d="M38 12 C24 17 12 25 11 34 C10 43 22 51 37 58" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M62 12 C76 17 88 25 89 34 C90 43 78 51 63 58" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M57 6 C52 24 47 46 42 64" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+
+    <svg class="tech-doodle doodle-terminal" viewBox="0 0 120 84" fill="none">
+      <path d="M14 12 C10 12 8 15 8 20 L8 66 C8 71 11 74 16 74 L104 75 C109 75 112 72 112 67 L111 18 C111 13 107 10 102 10 L17 11 C15 11 14 11 14 12 Z" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M22 32 C32 37 40 41 40 44 C40 47 31 52 22 57" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M48 55 C58 52 70 57 82 53" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+
+    <svg class="tech-doodle doodle-bug" viewBox="0 0 90 96" fill="none">
+      <path d="M45 26 C30 26 20 39 21 56 C22 73 31 86 45 86 C59 86 68 73 69 56 C70 39 60 26 45 26 Z" stroke="currentColor" stroke-width="3.5"/>
+      <path d="M44 26 C41 18 42 12 46 6" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M20 38 C13 33 8 28 5 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M69 38 C76 33 81 28 84 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M20 56 C13 55 8 55 3 56" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M69 56 C76 55 81 55 87 56" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M22 75 C15 80 10 84 5 90" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M67 75 C74 80 79 84 84 90" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+
+    <svg class="tech-doodle doodle-branch" viewBox="0 0 80 92" fill="none">
+      <circle cx="18" cy="16" r="8" stroke="currentColor" stroke-width="3.5"/>
+      <circle cx="18" cy="76" r="8" stroke="currentColor" stroke-width="3.5"/>
+      <circle cx="62" cy="45" r="8" stroke="currentColor" stroke-width="3.5"/>
+      <path d="M18 25 C17 42 17 58 18 68" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M18 45 C30 47 42 38 54 43" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+
+    <svg class="tech-doodle doodle-braces" viewBox="0 0 110 76" fill="none">
+      <path d="M46 8 C29 6 27 18 28 26 C29 33 18 34 17 38 C16 42 29 42 28 50 C27 58 28 70 46 69" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M64 8 C81 6 83 18 82 26 C81 33 92 34 93 38 C94 42 81 42 82 50 C83 58 82 70 64 69" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+
+    <svg class="tech-doodle doodle-bulb" viewBox="0 0 76 96" fill="none">
+      <path d="M38 8 C20 7 12 21 13 34 C14 45 20 52 27 58 L26 68 L50 69 L49 58 C57 52 63 45 63 33 C64 20 55 9 38 8 Z" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M28 78 C35 80 42 79 48 77" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M30 88 C35 90 40 89 45 87" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+
+    <svg class="tech-doodle doodle-pulse" viewBox="0 0 130 60" fill="none">
+      <path d="M4 32 C14 33 20 31 26 32 C33 33 34 8 42 8 C50 8 51 52 59 52 C67 52 68 26 76 25 C83 24 88 16 96 15 C103 14 108 32 126 31" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <span class="edge-line"></span>
+    <span class="status home-reveal" [style.--enter-delay]="'0s'"><span class="dot"></span>Available for work</span>
+
+    <div class="hero-copy">
+      <div class="name-block home-reveal" [style.--enter-delay]="'0.08s'">
+        <span class="first-name">Miyuru</span>
+        <h1>Tharuka</h1>
+      </div>
+
+      <div class="hero-role home-reveal" [style.--enter-delay]="'0.16s'"><span class="dash"></span>// {{ currentRole }}<span class="cursor">|</span></div>
+
+      <p class="hero-desc home-reveal" [style.--enter-delay]="'0.24s'">
+        I design and ship end-to-end web and mobile products — from HR systems and POS
+        platforms to AI-assisted health tools — with Angular, React and Node.js at the core.
+        Clean architecture, considered UI, and code built to be maintained.
+      </p>
+
+      <div class="hero-actions home-reveal" [style.--enter-delay]="'0.32s'">
+        <button class="btn btn-primary" type="button" (click)="scrollToSection('projects')">View work</button>
+        <button class="btn btn-outline" type="button" (click)="downloadCV()">Download CV ↓</button>
+      </div>
+
+      <div class="hero-meta home-reveal" [style.--enter-delay]="'0.4s'">
+        <span>Kaduwela, Sri Lanka</span>
+        <span>·</span>
+        <span>2026</span>
+        <span>·</span>
+        <span>2+ yrs experience</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee-row">
+    <div class="marquee-track">
+      <span *ngFor="let tech of technologies">{{ tech }}</span>
+      <span *ngFor="let tech of technologies">{{ tech }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
   <div class="container">
-    <div class="hero-layout">
-      <!-- Main Hero Content -->
-      <div class="hero-content">
-        <!-- Status Badge -->
-        <div class="status-badge home-reveal" [style.--enter-delay]="'0s'">
-          <span class="status-dot"></span>
-          <span>Available for work</span>
-        </div>
+    <span class="eyebrow">// numbers</span>
 
-        <!-- Hero Text -->
-        <h1 class="hero-title home-reveal" [style.--enter-delay]="'0.08s'">
-          Hi, I'm <span class="gradient-text">Tharuka</span>
-        </h1>
+    <div class="numbers-head">
+      <h2 class="numbers-heading">By the <span class="outline">numbers</span></h2>
+      <span class="numbers-deco" aria-hidden="true"><span class="deco-dot"></span></span>
+    </div>
 
-        <div class="role-wrapper home-reveal" [style.--enter-delay]="'0.16s'">
-          <h2 class="role-text">
-            <span class="typed-role gradient-text">{{ currentRole }}</span>
-            <span class="cursor">|</span>
-          </h2>
-        </div>
-
-        <p class="hero-description home-reveal" [style.--enter-delay]="'0.24s'">
-          Crafting exceptional digital experiences with cutting-edge technology.
-          I specialize in building scalable, performant applications that blend
-          innovation with beautiful design.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="cta-group home-reveal" [style.--enter-delay]="'0.32s'">
-          <button class="btn btn-primary" type="button" (click)="scrollToSection('projects')">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-            </svg>
-            <span>View Projects</span>
-          </button>
-          <button class="btn btn-outline" (click)="downloadCV()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            <span>Download CV</span>
-          </button>
-        </div>
-
-        <!-- Social Links -->
-        <div class="social-links home-reveal" [style.--enter-delay]="'0.4s'">
-          <a href="https://github.com/LEULEX-404" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/in/miyuru-tharuka-18a9b6412" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-          </a>
-          <a href="https://web.facebook.com/TharukaFB" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </a>
-          <a href="mailto:miyurut20@gmail.com" class="social-link" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-visual home-reveal" aria-label="Profile portrait" [style.--enter-delay]="'0.18s'">
-        <img class="hero-image" [src]="profileImage" alt="Miyuru Tharuka profile portrait" loading="eager">
-        <span class="hero-bottom-mask" aria-hidden="true"></span>
+    <div class="numbers-grid">
+      <div class="num-card" *ngFor="let stat of stats">
+        <div class="val">{{ stat.value }}</div>
+        <div class="lbl">{{ stat.label }}</div>
+        <p class="desc">{{ stat.description }}</p>
       </div>
     </div>
-
-    <!-- Stats Grid -->
-    <div class="stats-grid">
-      <div class="stat-card home-reveal" *ngFor="let stat of stats; let i = index" [style.--enter-delay.s]="i * 0.1">
-        <div class="stat-icon">
-          <!-- Briefcase -->
-          <svg *ngIf="stat.icon === 'briefcase'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-          </svg>
-          <!-- Clock -->
-          <svg *ngIf="stat.icon === 'clock'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-          <!-- Users -->
-          <svg *ngIf="stat.icon === 'users'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          <!-- Heart -->
-          <svg *ngIf="stat.icon === 'heart'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </div>
-        <h3 class="stat-value">{{ stat.value }}</h3>
-        <p class="stat-label">{{ stat.label }}</p>
-      </div>
-    </div>
-
-    <!-- Tech Stack -->
-    <div class="tech-section">
-      <h3 class="section-title home-reveal" [style.--enter-delay]="'0.12s'">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="16 18 22 12 16 6"/>
-          <polyline points="8 6 2 12 8 18"/>
-        </svg>
-        Technologies I Use
-      </h3>
-      <div class="tech-grid">
-        <div class="tech-badge home-reveal" *ngFor="let tech of technologies; let i = index" [style.--enter-delay.s]="i * 0.05">
-          <div class="tech-glow" [style.background]="tech.glow"></div>
-          <div class="tech-icon" [style.background]="tech.iconBg" [style.color]="tech.iconColor" [attr.aria-hidden]="true">
-            <svg *ngIf="tech.icon === 'angular'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2 3.5 6.4l1.2 9.1L12 22l7.3-6.5 1.2-9.1L12 2z"/>
-              <path d="M8.2 15.2 12 6l3.8 9.2"/>
-              <path d="M9.8 12.3h4.4"/>
-            </svg>
-            <svg *ngIf="tech.icon === 'react'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="12" cy="12" rx="8.5" ry="3.2"/>
-              <ellipse cx="12" cy="12" rx="8.5" ry="3.2" transform="rotate(60 12 12)"/>
-              <ellipse cx="12" cy="12" rx="8.5" ry="3.2" transform="rotate(120 12 12)"/>
-              <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
-            </svg>
-            <svg *ngIf="tech.icon === 'node'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3.2 19 7.2v9.6l-7 4-7-4V7.2l7-4z"/>
-              <path d="M12 8.1v7.8"/>
-              <path d="M8.6 10.2 12 8.1l3.4 2.1-3.4 2.1-3.4-2.1z"/>
-            </svg>
-            <svg *ngIf="tech.icon === 'typescript'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3.5" y="3.5" width="17" height="17" rx="4"/>
-              <path d="M8 9.3h8M10.3 9.3v8.2"/>
-              <path d="M13.7 12.8h3.7"/>
-            </svg>
-            <svg *ngIf="tech.icon === 'mongodb'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2.8c-2.6 2.9-4.1 5.8-4.1 9.2 0 4.8 2.2 7.6 4.1 9.2 1.9-1.6 4.1-4.4 4.1-9.2 0-3.4-1.5-6.3-4.1-9.2z"/>
-              <path d="M12 6.5v11"/>
-              <path d="M10.2 12.2c1 1.1 2.6 1.1 3.6 0"/>
-            </svg>
-            <svg *ngIf="tech.icon === 'aws'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 15.4c2.3 1.9 11.7 1.9 14 0"/>
-              <path d="M15.8 14.6 19 15.4 17.8 12.2"/>
-              <path d="M5.6 16.1c2-1.1 4.4-1.7 6.4-1.7 2.4 0 4.7.5 6.4 1.5"/>
-            </svg>
-          </div>
-          <span class="tech-name">{{ tech.name }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Actions -->
-    <div class="quick-actions">
-      <button class="action-card home-reveal" type="button" (click)="scrollToSection('about')" [style.--enter-delay]="'0s'">
-        <div class="action-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
-        </div>
-        <div class="action-content">
-          <h4>About Me</h4>
-          <p>Learn more about my journey</p>
-        </div>
-        <svg class="action-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </button>
-
-      <button class="action-card home-reveal" type="button" (click)="scrollToSection('skills')" [style.--enter-delay]="'0.12s'">
-        <div class="action-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
-        </div>
-        <div class="action-content">
-          <h4>My Skills</h4>
-          <p>Explore my technical expertise</p>
-        </div>
-        <svg class="action-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </button>
-
-      <button class="action-card home-reveal" (click)="scrollToContact()" [style.--enter-delay]="'0.24s'">
-        <div class="action-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-        </div>
-        <div class="action-content">
-          <h4>Get In Touch</h4>
-          <p>Let's work together</p>
-        </div>
-        <svg class="action-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Animated Background Effects -->
-  <div class="bg-grid"></div>
-  <div class="spotlight"></div>
-  
-  <!-- Particles -->
-  <div class="particles">
-    <div class="particle" *ngFor="let item of particleArray; let idx = index" 
-         [style.left.%]="(idx * 3.33)"
-         [style.animation-delay.s]="idx * 0.2"
-         [style.animation-duration.s]="4 + (idx % 3)">
-    </div>
-  </div>
-
-  <!-- Gradient Orbs -->
-  <div class="gradient-orbs">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
-
-  <!-- Floating Shapes -->
-  <div class="floating-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-    <div class="shape shape-4"></div>
   </div>
 </section>

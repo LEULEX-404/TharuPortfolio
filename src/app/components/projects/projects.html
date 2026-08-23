@@ -1,441 +1,123 @@
-<section id="projects" class="projects-section page-transition">
+<section id="projects" class="work-section">
   <div class="container">
-    <!-- Enhanced Page Header -->
-    <div class="page-header">
-      <div class="header-decoration">
-        <div class="decoration-orb orb-left"></div>
-        <div class="header-icon-wrapper">
-          <div class="icon-container">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-            </svg>
-            <div class="icon-pulse-ring"></div>
-          </div>
-        </div>
-        <div class="decoration-orb orb-right"></div>
+    <div class="section-head">
+      <div class="head-text">
+        <span class="eyebrow">// selected work</span>
+        <h2>Selected <span class="outline">work</span></h2>
       </div>
-      <h1 class="heading-lg gradient-text">My Projects</h1>
-      <p class="page-subtitle">
-        A showcase of my recent work and achievements across various domains
-      </p>
-      <div class="header-stats">
-        <div class="stat-item">
-          <span class="stat-number gradient-text">{{ projects.length }}+</span>
-          <span class="stat-label">Projects</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-number gradient-text">{{ categories.length - 1 }}</span>
-          <span class="stat-label">Categories</span>
-        </div>
+      <div class="head-side">
+        <span class="section-deco" aria-hidden="true"><span class="deco-dot"></span></span>
+        <p>Six shipped products across HR, retail, support and health-tech — full stack, front to back.</p>
       </div>
     </div>
 
-    <!-- Enhanced Category Filter -->
-    <div class="category-filter-wrapper">
-      <div class="filter-header">
-        <h3 class="filter-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-          </svg>
-          Filter Projects
-        </h3>
-        <div class="project-count-badge">
-          <span>{{ filteredProjects.length }}</span>
-          <span class="count-label">Projects</span>
-        </div>
-      </div>
-      <div class="category-filter">
-        <button
-          *ngFor="let category of categories; let i = index"
-          class="filter-btn glass-card"
-          [class.active]="selectedCategory === category.id"
-          [style.animation-delay.s]="i * 0.1"
-          (click)="selectCategory(category.id)">
-          <div class="filter-icon-wrapper">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect *ngIf="category.icon === 'grid'" x="3" y="3" width="7" height="7"/>
-              <rect *ngIf="category.icon === 'grid'" x="14" y="3" width="7" height="7"/>
-              <rect *ngIf="category.icon === 'grid'" x="14" y="14" width="7" height="7"/>
-              <rect *ngIf="category.icon === 'grid'" x="3" y="14" width="7" height="7"/>
-              <rect *ngIf="category.icon === 'monitor'" x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-              <line *ngIf="category.icon === 'monitor'" x1="8" y1="21" x2="16" y2="21"/>
-              <line *ngIf="category.icon === 'monitor'" x1="12" y1="17" x2="12" y2="21"/>
-              <rect *ngIf="category.icon === 'smartphone'" x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-              <line *ngIf="category.icon === 'smartphone'" x1="12" y1="18" x2="12.01" y2="18"/>
-            </svg>
+    <div class="work-list">
+      <div class="work-item" *ngFor="let project of projects; let i = index" (click)="openProjectDetails(project)">
+        <div class="work-index">{{ (i + 1) | number: '2.0-0' }} / {{ projects.length | number: '2.0-0' }}</div>
+        <div class="work-thumb"><img [src]="project.image" [alt]="project.title" loading="lazy"></div>
+        <div class="work-info">
+          <span class="featured" *ngIf="project.featured">Featured</span>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.shortDescription }}</p>
+          <div class="work-tags">
+            <span *ngFor="let tech of project.technologies.slice(0, 4)">{{ tech }}</span>
           </div>
-          <span class="filter-name">{{ category.name }}</span>
-          <div class="filter-shine"></div>
-        </button>
-      </div>
-    </div>
-
-    <!-- Projects Grid -->
-    <div class="projects-grid">
-      <div
-        *ngFor="let project of filteredProjects; let i = index"
-        class="project-card glass-card card-interactive"
-        [style.transition-delay.s]="i * 0.1"
-        (click)="openProjectDetails(project)">
-        
-        <div class="card-glow-effect"></div>
-        
-        <!-- Featured Badge -->
-        <div class="featured-badge" *ngIf="project.featured">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-          <span>Featured</span>
-          <div class="badge-glow"></div>
-        </div>
-
-        <!-- Project Image -->
-        <div class="project-image">
-          <img [src]="project.image" [alt]="project.title" loading="lazy">
-          <div class="image-overlay">
-            <div class="overlay-content">
-              <button class="view-details-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="m21 21-4.35-4.35"/>
-                </svg>
-                <span>View Details</span>
-              </button>
-            </div>
-          </div>
-          <div class="image-shine"></div>
-        </div>
-
-        <!-- Project Content -->
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">{{ project.title }}</h3>
-            <div class="project-meta">
-              <span class="project-date">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
-                {{ project.completedDate }}
-              </span>
-            </div>
-          </div>
-
-          <p class="project-description">{{ project.shortDescription }}</p>
-
-          <!-- Technologies -->
-          <div class="tech-stack">
-            <span class="tech-tag" *ngFor="let tech of project.technologies.slice(0, 4)">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-              {{ tech }}
-            </span>
-            <span class="tech-more" *ngIf="project.technologies.length > 4">
-              +{{ project.technologies.length - 4 }} more
-            </span>
+          <div class="work-links">
+            <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" rel="noopener" (click)="$event.stopPropagation()">Live site ↗</a>
+            <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" (click)="$event.stopPropagation()">Source ↗</a>
+            <a class="details-link" (click)="$event.stopPropagation(); openProjectDetails(project)">Details →</a>
           </div>
         </div>
+        <div class="work-date">{{ project.completedDate }}</div>
       </div>
     </div>
   </div>
 
-  <!-- Modal Overlay -->
+  <!-- Detail panel -->
   <div class="modal-overlay" *ngIf="sidePanelOpen" (click)="closeProjectDetails()" [@fadeIn]></div>
-  
-  <!-- Modal Panel -->
-  <div class="modal-panel" [class.open]="sidePanelOpen" *ngIf="selectedProject" [@slideIn]>
-    <div class="modal-background-effects">
-      <div class="modal-orb modal-orb-1"></div>
-      <div class="modal-orb modal-orb-2"></div>
-    </div>
+
+  <div class="modal-panel" *ngIf="selectedProject" [@slideIn]>
+    <button class="close-modal-btn" (click)="closeProjectDetails()" aria-label="Close">✕</button>
 
     <div class="modal-content">
-      <!-- Close Button -->
-      <button class="close-modal-btn" (click)="closeProjectDetails()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-
-      <!-- Screenshot Gallery -->
       <div class="screenshot-gallery">
         <div class="gallery-container">
-          <img 
-            [src]="selectedProject.screenshots[currentScreenshot]" 
-            [alt]="selectedProject.title"
-            class="gallery-image"
-            [@fadeIn]>
-          
-          <button class="gallery-nav prev" 
-                  (click)="prevScreenshot(); $event.stopPropagation()" 
-                  *ngIf="selectedProject.screenshots.length > 1">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
-          </button>
-          <button class="gallery-nav next" 
-                  (click)="nextScreenshot(); $event.stopPropagation()" 
-                  *ngIf="selectedProject.screenshots.length > 1">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 18 15 12 9 6"/>
-            </svg>
-          </button>
+          <img [src]="selectedProject.screenshots[currentScreenshot]" [alt]="selectedProject.title" class="gallery-image">
+
+          <button class="gallery-nav prev" (click)="prevScreenshot()" *ngIf="selectedProject.screenshots.length > 1" aria-label="Previous screenshot">←</button>
+          <button class="gallery-nav next" (click)="nextScreenshot()" *ngIf="selectedProject.screenshots.length > 1" aria-label="Next screenshot">→</button>
         </div>
 
         <div class="gallery-indicators" *ngIf="selectedProject.screenshots.length > 1">
-          <button 
-            *ngFor="let screenshot of selectedProject.screenshots; let i = index"
-            class="indicator"
-            [class.active]="i === currentScreenshot"
-            (click)="currentScreenshot = i; $event.stopPropagation()">
-          </button>
+          <button *ngFor="let screenshot of selectedProject.screenshots; let i = index"
+                  class="indicator" [class.active]="i === currentScreenshot"
+                  (click)="currentScreenshot = i"></button>
         </div>
       </div>
 
-      <!-- Project Details -->
       <div class="modal-details">
-        <!-- Header -->
-        <div class="detail-header">
-          <h2 class="detail-title gradient-text">{{ selectedProject.title }}</h2>
-          <div class="detail-meta-grid">
-            <div class="meta-item">
-              <div class="meta-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
-              </div>
-              <div class="meta-content">
-                <span class="meta-label">Completed</span>
-                <span class="meta-value">{{ selectedProject.completedDate }}</span>
-              </div>
-            </div>
-            <div class="meta-item">
-              <div class="meta-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-              </div>
-              <div class="meta-content">
-                <span class="meta-label">Duration</span>
-                <span class="meta-value">{{ selectedProject.duration }}</span>
-              </div>
-            </div>
-            <div class="meta-item">
-              <div class="meta-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-              </div>
-              <div class="meta-content">
-                <span class="meta-label">Team</span>
-                <span class="meta-value">{{ selectedProject.team }}</span>
-              </div>
-            </div>
-          </div>
+        <span class="featured" *ngIf="selectedProject.featured">Featured</span>
+        <h2>{{ selectedProject.title }}</h2>
+
+        <div class="detail-meta-grid">
+          <div class="meta-item"><span class="meta-label">Completed</span><span class="meta-value">{{ selectedProject.completedDate }}</span></div>
+          <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">{{ selectedProject.duration }}</span></div>
+          <div class="meta-item"><span class="meta-label">Team</span><span class="meta-value">{{ selectedProject.team }}</span></div>
+          <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">{{ selectedProject.role }}</span></div>
         </div>
 
-        <!-- Overview -->
         <div class="detail-section">
-          <h4 class="section-title">
-            <span class="title-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 16v-4"/>
-                <path d="M12 8h.01"/>
-              </svg>
-            </span>
-            Project Overview
-          </h4>
-          <p class="detail-description">{{ selectedProject.fullDescription }}</p>
+          <h4>Overview</h4>
+          <p>{{ selectedProject.fullDescription }}</p>
         </div>
 
-        <!-- Role -->
-        <div class="detail-section">
-          <h4 class="section-title">
-            <span class="title-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </span>
-            My Role
-          </h4>
-          <div class="role-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-            {{ selectedProject.role }}
-          </div>
-        </div>
-
-        <!-- Metrics -->
         <div class="detail-section" *ngIf="selectedProject.metrics">
-          <h4 class="section-title">
-            <span class="title-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="20" x2="12" y2="10"/>
-                <line x1="18" y1="20" x2="18" y2="4"/>
-                <line x1="6" y1="20" x2="6" y2="16"/>
-              </svg>
-            </span>
-            Project Impact
-          </h4>
+          <h4>Impact</h4>
           <div class="metrics-grid">
-            <div class="metric-card clay-card" *ngFor="let metric of getMetricsArray(selectedProject.metrics)">
-              <div class="metric-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg>
-              </div>
-              <div class="metric-info">
-                <span class="metric-label">{{ metric.key }}</span>
-                <span class="metric-value gradient-text">{{ metric.value }}</span>
-              </div>
+            <div class="metric-card" *ngFor="let metric of getMetricsArray(selectedProject.metrics)">
+              <span class="metric-value">{{ metric.value }}</span>
+              <span class="metric-label">{{ metric.key }}</span>
             </div>
           </div>
         </div>
 
-        <!-- Features -->
         <div class="detail-section">
-          <h4 class="section-title">
-            <span class="title-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 20h9"/>
-                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-              </svg>
-            </span>
-            Key Features
-          </h4>
-          <div class="features-grid">
-            <div class="feature-item" *ngFor="let feature of selectedProject.features">
-              <div class="feature-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </div>
-              <span>{{ feature }}</span>
-            </div>
+          <h4>Key features</h4>
+          <ul class="feature-list">
+            <li *ngFor="let feature of selectedProject.features">{{ feature }}</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h4>Technologies</h4>
+          <div class="work-tags">
+            <span *ngFor="let tech of selectedProject.technologies">{{ tech }}</span>
           </div>
         </div>
 
-        <!-- Technologies -->
-        <div class="detail-section">
-          <h4 class="section-title">
-            <span class="title-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                <polyline points="2 17 12 22 22 17"/>
-                <polyline points="2 12 12 17 22 12"/>
-              </svg>
-            </span>
-            Technologies Used
-          </h4>
-          <div class="tech-tags-grid">
-            <span class="tech-tag-detail" *ngFor="let tech of selectedProject.technologies">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-              {{ tech }}
-            </span>
-          </div>
-        </div>
-
-        <!-- Challenges & Solutions -->
         <div class="detail-section" *ngIf="selectedProject.challenges && selectedProject.solutions">
-          <h4 class="section-title">
-            <span class="title-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-              </svg>
-            </span>
-            Challenges & Solutions
-          </h4>
+          <h4>Challenges &amp; solutions</h4>
           <div class="challenge-solution-grid">
-            <div class="challenge-box glass-card">
-              <h5>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="12" y1="8" x2="12" y2="12"/>
-                  <line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
-                Challenges
-              </h5>
+            <div class="cs-box">
+              <h5>Challenges</h5>
               <ul>
-                <li *ngFor="let challenge of selectedProject.challenges">
-                  <div class="list-marker challenge-marker">!</div>
-                  <span>{{ challenge }}</span>
-                </li>
+                <li *ngFor="let challenge of selectedProject.challenges">{{ challenge }}</li>
               </ul>
             </div>
-            <div class="solution-box glass-card">
-              <h5>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                  <polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-                Solutions
-              </h5>
+            <div class="cs-box">
+              <h5>Solutions</h5>
               <ul>
-                <li *ngFor="let solution of selectedProject.solutions">
-                  <div class="list-marker solution-marker">✓</div>
-                  <span>{{ solution }}</span>
-                </li>
+                <li *ngFor="let solution of selectedProject.solutions">{{ solution }}</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- Actions -->
         <div class="detail-actions">
-          <a [href]="selectedProject.liveUrl" *ngIf="selectedProject.liveUrl" 
-             class="btn btn-primary" 
-             target="_blank"
-             rel="noopener"
-             (click)="$event.stopPropagation()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-            <span>Visit Live Site</span>
-          </a>
-          <a [href]="selectedProject.githubUrl" *ngIf="selectedProject.githubUrl" 
-             class="btn btn-outline" 
-             target="_blank"
-             rel="noopener"
-             (click)="$event.stopPropagation()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            <span>View Source Code</span>
-          </a>
+          <a *ngIf="selectedProject.liveUrl" [href]="selectedProject.liveUrl" class="btn btn-primary" target="_blank" rel="noopener">Visit live site ↗</a>
+          <a *ngIf="selectedProject.githubUrl" [href]="selectedProject.githubUrl" class="btn btn-outline" target="_blank" rel="noopener">View source ↗</a>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Background Effects -->
-  <div class="bg-effects">
-    <div class="bg-gradient-orb orb-1"></div>
-    <div class="bg-gradient-orb orb-2"></div>
-    <div class="bg-gradient-orb orb-3"></div>
-  </div>
-
-  <!-- Animated Grid -->
-  <div class="grid-background"></div>
 </section>

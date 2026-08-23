@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home.css']
 })
 export class Home implements OnInit, AfterViewInit, OnDestroy {
-  profileImage = '/images/Profile-removedBG.png';
+  profileImage = '/images/Profile-removedBG-cropped.png';
 
   currentRole = '';
   roles = [
@@ -21,76 +21,42 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   currentRoleIndex = 0;
   isDeleting = false;
   private typeInterval: any;
-  
-  particleArray = Array(30).fill(0);
-  mouseX = 0;
-  mouseY = 0;
 
   private homeRevealObserver: IntersectionObserver | null = null;
-  private scrollRevealEnabled = false;
 
   stats = [
-    { value: '5+', label: 'Projects Completed', icon: 'briefcase' },
-    { value: '2+', label: 'Years Experience', icon: 'clock' },
-    { value: '10+', label: 'Happy Clients', icon: 'users' },
-    { value: '100%', label: 'Client Satisfaction', icon: 'heart' }
-  ];
-
-  technologies = [
     {
-      name: 'Angular',
-      icon: 'angular',
-      glow: 'linear-gradient(135deg, rgba(221, 0, 49, 0.22), rgba(196, 0, 47, 0.14))',
-      iconBg: 'rgba(221, 0, 49, 0.12)',
-      iconColor: '#dd0031'
+      value: '5+',
+      label: 'Projects completed',
+      description: 'End-to-end web and mobile products shipped — from HR systems and POS platforms to AI-assisted health tools.'
     },
     {
-      name: 'React',
-      icon: 'react',
-      glow: 'linear-gradient(135deg, rgba(97, 218, 251, 0.22), rgba(33, 161, 196, 0.14))',
-      iconBg: 'rgba(97, 218, 251, 0.12)',
-      iconColor: '#61dafb'
+      value: '2+',
+      label: 'Years experience',
+      description: 'Building production-grade applications with Angular, React and Node.js across freelance and team projects.'
     },
     {
-      name: 'Node.js',
-      icon: 'node',
-      glow: 'linear-gradient(135deg, rgba(51, 153, 51, 0.22), rgba(102, 204, 102, 0.14))',
-      iconBg: 'rgba(51, 153, 51, 0.12)',
-      iconColor: '#339933'
+      value: '10+',
+      label: 'Happy clients',
+      description: 'Trusted to deliver clean architecture, considered UI and code that is built to be maintained.'
     },
     {
-      name: 'TypeScript',
-      icon: 'typescript',
-      glow: 'linear-gradient(135deg, rgba(49, 120, 198, 0.22), rgba(35, 90, 151, 0.14))',
-      iconBg: 'rgba(49, 120, 198, 0.12)',
-      iconColor: '#3178c6'
-    },
-    {
-      name: 'MongoDB',
-      icon: 'mongodb',
-      glow: 'linear-gradient(135deg, rgba(71, 162, 72, 0.22), rgba(0, 237, 100, 0.14))',
-      iconBg: 'rgba(71, 162, 72, 0.12)',
-      iconColor: '#47a248'
-    },
-    {
-      name: 'AWS',
-      icon: 'aws',
-      glow: 'linear-gradient(135deg, rgba(255, 153, 0, 0.22), rgba(236, 114, 17, 0.14))',
-      iconBg: 'rgba(255, 153, 0, 0.12)',
-      iconColor: '#ff9900'
+      value: '4',
+      label: 'Certifications earned',
+      description: 'Continuously leveling up through certified coursework in full-stack development and modern JS frameworks.'
     }
   ];
+
+  technologies = ['Angular', 'React', 'Node.js', 'TypeScript', 'MongoDB', 'AWS', 'Express.js', 'Docker'];
 
   constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef) {}
 
   ngOnInit() {
-    this.initMouseTracking();
-    // Start typing immediately when component loads
     this.typeWriter();
   }
 
   ngAfterViewInit() {
-    this.enableScrollRevealIfNeeded();
+    this.initHomeRevealObserver();
   }
 
   ngOnDestroy() {
@@ -99,24 +65,6 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.homeRevealObserver?.disconnect();
-  }
-
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    this.enableScrollRevealIfNeeded();
-  }
-
-  private enableScrollRevealIfNeeded() {
-    if (this.scrollRevealEnabled || typeof window === 'undefined') {
-      return;
-    }
-
-    if (window.scrollY <= 8) {
-      return;
-    }
-
-    this.scrollRevealEnabled = true;
-    this.initHomeRevealObserver();
   }
 
   private initHomeRevealObserver() {
@@ -152,17 +100,15 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   typeWriter() {
     let charIndex = 0;
     let isTyping = true;
-    
+
     this.typeInterval = setInterval(() => {
       const currentText = this.roles[this.currentRoleIndex];
-      
+
       if (isTyping) {
-        // Typing forward
         if (charIndex <= currentText.length) {
           this.currentRole = currentText.substring(0, charIndex);
           charIndex++;
-          
-          // When fully typed, wait then start deleting
+
           if (charIndex > currentText.length) {
             setTimeout(() => {
               isTyping = false;
@@ -170,43 +116,21 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
           }
         }
       } else {
-        // Deleting backward
         if (charIndex > 0) {
           charIndex--;
           this.currentRole = currentText.substring(0, charIndex);
         } else {
-          // Move to next role
           this.currentRoleIndex = (this.currentRoleIndex + 1) % this.roles.length;
           isTyping = true;
           charIndex = 0;
         }
       }
-      
-      // Trigger change detection
+
       this.cdr.detectChanges();
     }, 100);
   }
 
-  initMouseTracking() {
-    if (typeof window !== 'undefined') {
-      document.addEventListener('mousemove', (e) => {
-        this.mouseX = e.clientX;
-        this.mouseY = e.clientY;
-        this.updateSpotlight();
-      });
-    }
-  }
-
-  updateSpotlight() {
-    const spotlight = document.querySelector('.spotlight') as HTMLElement;
-    if (spotlight) {
-      spotlight.style.left = this.mouseX + 'px';
-      spotlight.style.top = this.mouseY + 'px';
-    }
-  }
-
   downloadCV() {
-    console.log('Downloading CV...');
     const link = document.createElement('a');
     link.href = 'CV/Tharuka(CV).pdf';
     link.download = 'Tharuka-CV.pdf';
@@ -225,17 +149,5 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
 
   scrollToContact() {
     this.scrollToSection('contact');
-  }
-
-  navigateToProjects() {
-    // In-page section navigation is handled in the template.
-  }
-
-  navigateToAbout() {
-    // In-page section navigation is handled in the template.
-  }
-
-  navigateToSkills() {
-    // In-page section navigation is handled in the template.
   }
 }
